@@ -1,7 +1,15 @@
-import {Link} from 'react-router-dom';
-const Nav = ({search, setSearch}) => {
+import {Link, useLocation} from 'react-router-dom';
+import {useContext} from "react";
+import DataContext from "./context/DataContext";
+const Nav = () => {
+    const {search, setSearch} = useContext(DataContext);
+    const location = useLocation();
+
+    const showSearch = location.pathname === '/';
+
     return (
         <nav className='Nav'>
+            { showSearch && (
             <form className='searchForm' onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor='search'>Search Posts</label>
                 <input
@@ -12,6 +20,7 @@ const Nav = ({search, setSearch}) => {
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </form>
+                )}
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='post'>Post</Link></li>

@@ -40,7 +40,7 @@ body {
 
 .Header, .Footer {
   width: 100%;
-  background-color: #66d8f5;
+  background-color: #DD852C;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -102,11 +102,6 @@ body {
   padding: 1rem;
 }
 
-.Nav li:hover,
-.Nav li:focus {
-  padding: 1rem;
-}
-
 .Nav li a {
   color: #fff;
   text-decoration: none;
@@ -165,6 +160,17 @@ body {
   margin: 1rem 0;
 }
 
+.postImage {
+  margin-bottom: .8rem;
+  min-height: auto;
+  max-width: 100%;
+}
+
+label[for="postImage"],
+input#postImage {
+  width: fit-content;
+}
+
 .newPostForm {
   display: flex;
   flex-direction: column;
@@ -198,6 +204,12 @@ body {
   padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
+  background: #E0E0E0;
+}
+
+.newPostForm button:hover,
+.newPostForm button:focus{
+  background: #EBEBEB;
 }
 
 .Missing p, .PostPage p, .NewPost p {
@@ -216,12 +228,25 @@ body {
 }
 
 .deleteButton {
-  background-color: red;
+  background: #B40424;
+}
+
+.deleteButton:hover,
+.deleteButton:focus
+{
+  background: #C80428;
 }
 
 .editButton {
-  background-color: #333;
+  background: #333;
 }
+
+.editButton:hover,
+.editButton:focus
+{
+  background: #3D3D3D;
+}
+
 .statusMsg {
   margin-top: 2rem;
 }
@@ -238,12 +263,11 @@ body {
   .Nav {
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
   }
 
   .Nav ul {
-    text-align: right;
+    margin-left: auto;
   }
 
   .Nav li:hover,
@@ -252,6 +276,7 @@ body {
   .Nav li:focus a  {
     background-color: #eee;
     color: #333;
+    cursor: pointer;
   }
 
   .searchForm {
