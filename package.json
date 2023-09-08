@@ -1,7 +1,7 @@
 {
   "name": "react-blog",
   "version": "0.1.0",
-  "homepage": "https://private-lazy-val.github.io/react-blog",
+  "homepage": "https://private-lazy-val.github.io/react-blog/",
   "private": true,
   "dependencies": {
     "axios": "^1.5.0",
