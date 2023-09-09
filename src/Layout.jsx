@@ -6,7 +6,7 @@ import {Outlet} from 'react-router-dom';
 const Layout = () => {
     return (
         <div className='App'>
-            <Header title='The Pekingese Chronicles'/>
+            <Header title='Pekingese Corner &#128062;'/>
             <Nav/>
             <Outlet/>
             <Footer/>

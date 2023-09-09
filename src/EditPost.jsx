@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 const EditPost = () => {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
-    const {posts, setPosts, postImage, setPostImage, handleSetImage, fileName} = useContext(DataContext);
+    const {posts, setPosts, postImage, setPostImage, handleSetImage, fileName, setFileName} = useContext(DataContext);
     const {id} = useParams();
     const post = posts.find(post => (post.id).toString() === id);
     const navigate = useNavigate();
@@ -18,12 +18,13 @@ const EditPost = () => {
             setEditTitle(post.title);
             setEditBody(post.body);
             setPostImage(post.image);
+            setFileName(post.file_name);
         }
-    }, [post, setEditTitle, setEditBody, setPostImage])
+    }, [post])
 
     const handleEdit = async (id) => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const updatedPost = {id, title: editTitle, datetime, body: editBody, image: postImage};
+        const updatedPost = {id, title: editTitle, datetime, body: editBody, image: postImage, file_name: fileName};
         try {
             const response = await api.put(`/posts/${id}`, updatedPost);
             setPosts(posts.map(post => { if(post.id === id) {
@@ -31,6 +32,7 @@ const EditPost = () => {
             setEditTitle('');
             setEditBody('');
             setPostImage(null);
+            setFileName('');
             navigate('/');
         } catch (err) {
             console.log(`Error: ${err.message}`);

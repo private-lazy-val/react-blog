@@ -14,7 +14,7 @@ const NewPost = () => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
-        const newPost = {id, title: postTitle, datetime, body: postBody, image: postImage};
+        const newPost = {id, title: postTitle, datetime, body: postBody, image: postImage, file_name: fileName};
         try {
             const response = await api.post('/posts', newPost);
             const allPosts = [...posts, response.data];
