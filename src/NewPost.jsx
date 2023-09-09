@@ -1,14 +1,19 @@
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import DataContext from "./context/DataContext";
 import {format} from "date-fns";
 import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
+import {IoMdClose} from "react-icons/io";
 
 const NewPost = () => {
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
     const {posts, setPosts, setPostImage, postImage, fileName, setFileName, handleSetImage} = useContext(DataContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        {fileName && setFileName('')}
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,6 +66,7 @@ const NewPost = () => {
                         Choose File
                     </button>
                     <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
+                    {fileName && <button className="removeFileButton" type="button" onClick={() => { setPostImage(null); setFileName(''); }}><IoMdClose/></button>}
                 </div>
                 <button className="submitButton" type='submit'>Submit</button>
             </form>

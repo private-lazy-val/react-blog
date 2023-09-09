@@ -4,6 +4,7 @@ import DataContext from "./context/DataContext";
 import {format} from "date-fns";
 import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
+import {IoMdClose} from "react-icons/io";
 
 const EditPost = () => {
     const [editTitle, setEditTitle] = useState('');
@@ -72,6 +73,7 @@ const EditPost = () => {
                                 Choose File
                             </button>
                             <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
+                            {fileName && <button className="removeFileButton" type="button" onClick={() => { setPostImage(null); setFileName(''); }}><IoMdClose/></button>}
                         </div>
                         <button className="submitButton" type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
                     </form>

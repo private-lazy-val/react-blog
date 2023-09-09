@@ -221,6 +221,12 @@ input#postImage {
   background: #ADCFFF;
 }
 
+.removeFileButton {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
 .Missing p, .PostPage p, .NewPost p {
   margin-top: 1rem;
 }

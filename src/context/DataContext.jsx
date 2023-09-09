@@ -47,7 +47,7 @@ export const DataProvider = ({children}) => {
         <DataContext.Provider value={{
             search, setSearch,
             searchResults, fetchError, isLoading,
-            posts, setPosts, postImage,setPostImage, handleSetImage: handleSetImage, fileName, setFileName
+            posts, setPosts, postImage,setPostImage, handleSetImage, fileName, setFileName
         }}>
             {children}
         </DataContext.Provider>
