@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom';
 const NewPost = () => {
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
-    const {posts, setPosts, postImage, handleImageChange} = useContext(DataContext);
+    const {posts, setPosts, setPostImage, postImage, handleImageChange} = useContext(DataContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -21,6 +21,7 @@ const NewPost = () => {
             setPosts(allPosts);
             setPostTitle('');
             setPostBody('');
+            setPostImage(null);
             navigate('/'); // after submitting a new post, the navigate('/') function call will change the application's current route to the home page
             // the hook is non user-initiated
         } catch (err) {

@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 const EditPost = () => {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
-    const {posts, setPosts, postImage, handleImageChange} = useContext(DataContext);
+    const {posts, setPosts, postImage, setPostImage, handleImageChange} = useContext(DataContext);
     const {id} = useParams();
     const post = posts.find(post => (post.id).toString() === id);
     const navigate = useNavigate();
@@ -17,20 +17,20 @@ const EditPost = () => {
         if (post) {
             setEditTitle(post.title);
             setEditBody(post.body);
-            if (post.image) {
-                handleImageChange(post.image);
-            }
+            setPostImage(post.image);
         }
-    }, [post, setEditTitle, setEditBody, handleImageChange])
+    }, [post, setEditTitle, setEditBody])
 
     const handleEdit = async (id) => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
         const updatedPost = {id, title: editTitle, datetime, body: editBody, image: postImage};
         try {
             const response = await api.put(`/posts/${id}`, updatedPost);
-            setPosts(posts.map(post => post.id === id ? {...response.data} : post));
+            setPosts(posts.map(post => { if(post.id === id) {
+                return {...response.data} } else { return  post}}));
             setEditTitle('');
             setEditBody('');
+            setPostImage(null);
             navigate('/');
         } catch (err) {
             console.log(`Error: ${err.message}`);
