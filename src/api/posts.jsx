@@ -1,5 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-export default axios.create({
-    baseURL: 'https://pekingese-blog.vercel.app/api/posts'
+const api = axios.create({
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3500'
 });
+
+export default api;
