@@ -47,7 +47,7 @@ const NewPost = () => {
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <label htmlFor='postImage'>Upload an image:</label>
+                <label htmlFor='postImage' style={{ marginBottom: ".5rem" }}>Upload an image:</label>
                 <input
                     id='postImage'
                     type='file'

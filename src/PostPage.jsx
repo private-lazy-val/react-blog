@@ -30,13 +30,15 @@ const PostPage = () => {
                         <h2>{post.title}</h2>
                         <p className='postDate'>{post.datetime}</p>
                         <p className='postBody'>{post.body}</p>
-                        {post.image && <img className='postImage' src={post.image} alt={post.title}/>}
-                        <Link to={`/edit/${post.id}`}>
-                            <button className='editButton'>Edit Post</button>
-                        </Link>
-                        <button className='deleteButton' onClick={() => handleDelete(post.id)}>
-                            Delete Post
-                        </button>
+                        {post.image && <img className='postImage_full-size' src={post.image} alt={post.title}/>}
+                        <div className='optionsButtons'>
+                            <Link to={`/edit/${post.id}`}>
+                                <button className='editButton'>Edit Post</button>
+                            </Link>
+                            <button className='deleteButton' onClick={() => handleDelete(post.id)}>
+                                Delete Post
+                            </button>
+                        </div>
                     </>
                 }
                 {!post &&

@@ -17,8 +17,11 @@ const EditPost = () => {
         if (post) {
             setEditTitle(post.title);
             setEditBody(post.body);
+            if (post.image) {
+                handleImageChange(post.image);
+            }
         }
-    }, [post, setEditTitle, setEditBody])
+    }, [post, setEditTitle, setEditBody, handleImageChange])
 
     const handleEdit = async (id) => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
@@ -55,7 +58,7 @@ const EditPost = () => {
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-                        <label htmlFor='postImage'>Upload an image:</label>
+                        <label htmlFor='postImage' style={{ marginBottom: ".5rem" }}>Upload an image:</label>
                         <input
                             id='postImage'
                             type='file'

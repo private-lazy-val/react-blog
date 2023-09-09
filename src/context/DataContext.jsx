@@ -23,16 +23,23 @@ export const DataProvider = ({ children }) => {
         setSearchResults(filteredResults.reverse());
     }, [posts, search]);
 
-    const handleImageChange = async (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
+    const handleImageChange = (e) => {
+        if (e && e.target && e.target.files) {// Scenario 1: New Image Upload
+            // the user selects a file via the file input dialog. This triggers.
+            // the onChange event for the file input, and the handleImageChange function is called.
+            const file = e.target.files[0];
+            const reader = new FileReader(); // this is a JS object that can read data from Blob or File objects.
 
-        reader.onloadend = () => {
-            setPostImage(reader.result);
-        };
+            reader.onloadend = () => { // onloadend event handler for the FileReader will update the state to hold the Data URL representation
+                // of the file once the read is complete in readAsDataURL.
+                setPostImage(reader.result);
+            };
 
-        if (file) {
-            reader.readAsDataURL(file);
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        } else if (typeof e === 'string') { // Scenario 2: Existing Image (Data URL)
+            setPostImage(e);
         }
     };
 

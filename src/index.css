@@ -21,26 +21,19 @@ body {
 
 #root {
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .App {
-  width: 100%;
-  max-width: 800px;
-  height: 100vh; /* this is enough to set the height of the page */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border: 1px solid #333;
-  box-shadow: 0px 0px 15px gray;
 }
 
 .Header, .Footer {
   width: 100%;
-  background-color: #DD852C;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -62,12 +55,16 @@ body {
 }
 
 .Nav {
+  position: sticky;
+  top: 0;
   width: 100%;
-  background-color: #333;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  box-shadow: 0px 4px 5px lightgray;
+  z-index: 1;
 }
 
 .searchForm {
@@ -83,6 +80,7 @@ body {
   padding: 0.25rem;
   border-radius: 0.25rem;
   outline: none;
+  border: 1px solid gray;
 }
 
 .searchForm label {
@@ -99,12 +97,13 @@ body {
 }
 
 .Nav li {
-  padding: 1rem;
+  padding: 0.9rem;
 }
 
 .Nav li a {
-  color: #fff;
+  padding: 0.9rem 0;
   text-decoration: none;
+  color: #000;
 }
 
 .Nav li:hover,
@@ -160,7 +159,7 @@ body {
   margin: 1rem 0;
 }
 
-.postImage {
+.postImage_full-size {
   margin-bottom: .8rem;
   min-height: auto;
   max-width: 100%;
@@ -171,6 +170,12 @@ input#postImage {
   width: fit-content;
 }
 
+.postImage_preview {
+  display: inline-block;
+  width: 50%;
+  height: auto;
+
+}
 .newPostForm {
   display: flex;
   flex-direction: column;
@@ -190,6 +195,7 @@ input#postImage {
   border-radius: 0.25rem;
   margin-right: 0.25rem;
   outline: none;
+  border: 1px solid gray;
 }
 
 .newPostForm textarea {
@@ -204,12 +210,14 @@ input#postImage {
   padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
-  background: #E0E0E0;
+  background: #99C3FF;
+  border: none;
+  color: #fff;
 }
 
 .newPostForm button:hover,
 .newPostForm button:focus{
-  background: #EBEBEB;
+  background: #ADCFFF;
 }
 
 .Missing p, .PostPage p, .NewPost p {
@@ -221,30 +229,35 @@ input#postImage {
   min-width: 48px;
   border-radius: 0.25rem;
   padding: 0.5rem;
-  margin-right: 0.5rem;
   font-size: 1rem;
   color: #fff;
   cursor: pointer;
+  border: none;
 }
 
 .deleteButton {
-  background: #B40424;
+  background: #EF767A;
 }
 
 .deleteButton:hover,
 .deleteButton:focus
 {
-  background: #C80428;
+  background: #F29195;
 }
 
 .editButton {
-  background: #333;
+  background: #99C3FF;
 }
 
 .editButton:hover,
 .editButton:focus
 {
-  background: #3D3D3D;
+  background: #ADCFFF;
+}
+
+.optionsButtons {
+  display: flex;
+  gap: .5rem;
 }
 
 .statusMsg {
@@ -274,7 +287,7 @@ input#postImage {
   .Nav li:focus,
   .Nav li:hover a,
   .Nav li:focus a  {
-    background-color: #eee;
+    background-color: #F5F5F5;
     color: #333;
     cursor: pointer;
   }
