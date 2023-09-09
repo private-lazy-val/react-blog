@@ -8,6 +8,7 @@ export const DataProvider = ({children}) => {
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [postImage, setPostImage] = useState(null);
+    const [fileName, setFileName] = useState('');
 
     const {data, fetchError, isLoading} = useAxiosFetch('http://localhost:3500/posts');
 
@@ -23,10 +24,10 @@ export const DataProvider = ({children}) => {
         setSearchResults(filteredResults.reverse());
     }, [posts, search]);
 
-    const handleImageChange = (e) => {
+    const handleSetImage = (e) => {
         if (e && e.target && e.target.files) {
             // the user selects a file via the file input dialog. This triggers.
-            // the onChange event for the file input, and the handleImageChange function is called.
+            // the onChange event for the file input, and the handleSetImage function is called.
             const file = e.target.files[0];
             const reader = new FileReader(); // this is a JS object that can read data from Blob or File objects.
 
@@ -37,6 +38,7 @@ export const DataProvider = ({children}) => {
             reader.onloadend = () => { // onloadend event handler for the FileReader will update the state to hold the Data URL representation
                 // of the file once the read is complete in readAsDataURL.
                 setPostImage(reader.result);
+                setFileName(file.name);
             };
         }
     };
@@ -45,7 +47,7 @@ export const DataProvider = ({children}) => {
         <DataContext.Provider value={{
             search, setSearch,
             searchResults, fetchError, isLoading,
-            posts, setPosts, postImage,setPostImage, handleImageChange
+            posts, setPosts, postImage,setPostImage, handleSetImage: handleSetImage, fileName, setFileName
         }}>
             {children}
         </DataContext.Provider>

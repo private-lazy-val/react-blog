@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 const EditPost = () => {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
-    const {posts, setPosts, postImage, setPostImage, handleImageChange} = useContext(DataContext);
+    const {posts, setPosts, postImage, setPostImage, handleSetImage, fileName} = useContext(DataContext);
     const {id} = useParams();
     const post = posts.find(post => (post.id).toString() === id);
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const EditPost = () => {
             setEditBody(post.body);
             setPostImage(post.image);
         }
-    }, [post, setEditTitle, setEditBody])
+    }, [post, setEditTitle, setEditBody, setPostImage])
 
     const handleEdit = async (id) => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
@@ -58,13 +58,20 @@ const EditPost = () => {
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-                        <label htmlFor='postImage' style={{ marginBottom: ".5rem" }}>Upload an image:</label>
-                        <input
-                            id='postImage'
-                            type='file'
-                            onChange={handleImageChange}
-                        />
-                        <button type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
+                        <label htmlFor='postImage'>Upload an image:</label>
+                        <div className="custom-file-input">
+                            <input
+                                id='postImage'
+                                type='file'
+                                style={{display: 'none'}}  // Hide the default input
+                                onChange={handleSetImage}
+                            />
+                            <button className="chooseFileButton" type="button" onClick={() => document.getElementById('postImage').click()}>
+                                Choose File
+                            </button>
+                            <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
+                        </div>
+                        <button className="submitButton" type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
                     </form>
                 </>
             }

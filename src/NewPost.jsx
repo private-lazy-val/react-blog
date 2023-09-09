@@ -7,7 +7,7 @@ import {useNavigate} from 'react-router-dom';
 const NewPost = () => {
     const [postTitle, setPostTitle] = useState('');
     const [postBody, setPostBody] = useState('');
-    const {posts, setPosts, setPostImage, postImage, handleImageChange} = useContext(DataContext);
+    const {posts, setPosts, setPostImage, postImage, fileName, setFileName, handleSetImage} = useContext(DataContext);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -22,6 +22,7 @@ const NewPost = () => {
             setPostTitle('');
             setPostBody('');
             setPostImage(null);
+            setFileName('');
             navigate('/'); // after submitting a new post, the navigate('/') function call will change the application's current route to the home page
             // the hook is non user-initiated
         } catch (err) {
@@ -48,13 +49,20 @@ const NewPost = () => {
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <label htmlFor='postImage' style={{ marginBottom: ".5rem" }}>Upload an image:</label>
-                <input
-                    id='postImage'
-                    type='file'
-                    onChange={handleImageChange}
-                />
-                <button type='submit'>Submit</button>
+                <label htmlFor='postImage'>Upload an image:</label>
+                <div className="custom-file-input">
+                    <input
+                        id='postImage'
+                        type='file'
+                        style={{display: 'none'}}  // Hide the default input
+                        onChange={handleSetImage}
+                    />
+                    <button className="chooseFileButton" type="button" onClick={() => document.getElementById('postImage').click()}>
+                        Choose File
+                    </button>
+                    <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
+                </div>
+                <button className="submitButton" type='submit'>Submit</button>
             </form>
         </main>
     );

@@ -1,9 +1,13 @@
 import Feed from './Feed';
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import DataContext from "./context/DataContext";
 
 const Home = () => {
     const {searchResults, fetchError, isLoading} = useContext(DataContext);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <main className='Home'>

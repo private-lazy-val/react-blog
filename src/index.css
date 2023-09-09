@@ -202,10 +202,11 @@ input#postImage {
   height: 100px;
 }
 
-.newPostForm button {
+.submitButton {
   margin-top: 1rem;
   height: 48px;
-  min-width: 48px;
+  max-width: 300px;
+  min-width: fit-content;
   border-radius: 10px;
   padding: 0.5rem;
   font-size: 1rem;
@@ -215,8 +216,8 @@ input#postImage {
   color: #fff;
 }
 
-.newPostForm button:hover,
-.newPostForm button:focus{
+.submitButton:hover,
+.submitButton:focus{
   background: #ADCFFF;
 }
 
@@ -233,6 +234,25 @@ input#postImage {
   color: #fff;
   cursor: pointer;
   border: none;
+}
+
+.chooseFileButton {
+  margin-top: 1rem;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  margin-right: .5rem;
+  background: #EF767A;
+}
+
+.chooseFileButton:hover,
+.chooseFileButton:focus{
+  background: #F29195;
 }
 
 .deleteButton {
