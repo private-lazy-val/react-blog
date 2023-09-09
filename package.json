@@ -1,7 +1,6 @@
 {
   "name": "react-blog",
   "version": "0.1.0",
-  "main": "server.js",
   "homepage": "https://private-lazy-val.github.io/react-blog/",
   "private": true,
   "dependencies": {
@@ -14,8 +13,7 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "pre-deploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

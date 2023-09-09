@@ -8,7 +8,7 @@ const Post = ({post}) => {
                 <p className='postDate'>{post.datetime}</p>
             </Link>
             <p className='postBody'>{
-                (post.body).length <=80
+                (post.body).length <= 80
                 ? post.body
                     : `${(post.body).slice(0, 80)}...`
             }</p>
