@@ -28,8 +28,13 @@ const EditPost = () => {
         const updatedPost = {id, title: editTitle, datetime, body: editBody, image: postImage, file_name: fileName};
         try {
             const response = await api.put(`/posts/${id}`, updatedPost);
-            setPosts(posts.map(post => { if(post.id === id) {
-                return {...response.data} } else { return  post}}));
+            setPosts(posts.map(post => {
+                if (post.id === id) {
+                    return {...response.data}
+                } else {
+                    return post
+                }
+            }));
             setEditTitle('');
             setEditBody('');
             setPostImage(null);
@@ -41,41 +46,46 @@ const EditPost = () => {
     }
 
     return (
-        <main className='NewPost'>
+        <main className='new-post'>
             {editTitle &&
                 <>
                     <h2>Edit Post</h2>
-                    <form className='newPostForm' onSubmit={(e) => e.preventDefault()}>
-                        <label htmlFor='postTitle'>Title:</label>
+                    <form className='new-post-form' onSubmit={(e) => e.preventDefault()}>
+                        <label htmlFor='post-title'>Title:</label>
                         <input
-                            id='postTitle'
+                            id='post-title'
                             type='text'
                             required
                             value={editTitle}
                             onChange={(e) => setEditTitle(e.target.value)}
                         />
-                        <label htmlFor='postBody'>Post:</label>
+                        <label htmlFor='post-body'>Post:</label>
                         <textarea
-                            id='postBody'
+                            id='post-body'
                             required
                             value={editBody}
                             onChange={(e) => setEditBody(e.target.value)}
                         />
-                        <label htmlFor='postImage'>Upload an image:</label>
-                        <div className="custom-file-input">
+                        <label htmlFor='post-image'>Upload an image:</label>
+                        <div>
                             <input
-                                id='postImage'
+                                className="default-file-input"
+                                id='post-image'
                                 type='file'
-                                style={{display: 'none'}}  // Hide the default input
+                                // Hide the default input
                                 onChange={handleSetImage}
                             />
-                            <button className="chooseFileButton" type="button" onClick={() => document.getElementById('postImage').click()}>
+                            <button className="custom-file-input" type="button"
+                                    onClick={() => document.getElementById('post-image').click()}>
                                 Choose File
                             </button>
-                            <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
-                            {fileName && <button className="removeFileButton" type="button" onClick={() => { setPostImage(null); setFileName(''); }}><IoMdClose/></button>}
+                            <span>{fileName || 'No file chosen'}</span> {/* Displaying the name of the file */}
+                            {fileName && <button className="remove-file-btn" type="button" onClick={() => {
+                                setPostImage(null);
+                                setFileName('');
+                            }}><IoMdClose/></button>}
                         </div>
-                        <button className="submitButton" type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
+                        <button className="submit-btn" type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
                     </form>
                 </>
             }

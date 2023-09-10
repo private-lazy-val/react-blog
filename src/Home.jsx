@@ -10,11 +10,11 @@ const Home = () => {
     }, []);
 
     return (
-        <main className='Home'>
-            {isLoading && <p className='statusMsg'>Loading posts...</p>}
-            {!isLoading && fetchError && <p className='statusMsg' style={{color: 'red'}}>{fetchError}</p>}
+        <main className='home'>
+            {isLoading && <p className='status-msg'>Loading posts...</p>}
+            {!isLoading && fetchError && <p className='status-msg_err'>{fetchError}</p>}
             {!isLoading && !fetchError && (searchResults.length ? <Feed posts={searchResults}/> :
-                <p className='statusMsg'>No posts to display.</p>)}
+                <p className='status-msg'>No posts to display.</p>)}
         </main>
     );
 };

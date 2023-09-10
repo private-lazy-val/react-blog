@@ -1,7 +1,7 @@
 const Footer = () => {
     const today = new Date();
     return (
-        <footer className='Footer'>
+        <footer className='footer'>
             <p>Pekingese Corner &copy;{today.getFullYear()}</p>
         </footer>
     );

@@ -1,5 +1,5 @@
 import {useParams, Link} from "react-router-dom"; // useParams allows to access the URL parameters from the current route
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import DataContext from "./context/DataContext";
 import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
@@ -10,6 +10,10 @@ const PostPage = () => {
     const {id} = useParams(); // id is de-structured directly from the object returned by useParams().
     // This ID is then used to find the relevant post from the posts array
     const post = posts.find(post => (post.id).toString() === id) // toString to use ===
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const handleDelete = async (id) => {
         try {
@@ -23,19 +27,19 @@ const PostPage = () => {
     }
 
     return (
-        <main className='PostPage'>
+        <main className='post-page'>
             <article className='post'>
                 {post &&
                     <>
                         <h2>{post.title}</h2>
-                        <p className='postDate'>{post.datetime}</p>
-                        <p className='postBody'>{post.body}</p>
-                        {post.image && <img className='postImage_full-size' src={post.image} alt={post.title}/>}
-                        <div className='optionsButtons'>
+                        <p className='post-date'>{post.datetime}</p>
+                        <p className='post-body'>{post.body}</p>
+                        {post.image && <img className='post-image_full-size' src={post.image} alt={post.title}/>}
+                        <div className='options-btn'>
                             <Link to={`/edit/${post.id}`}>
-                                <button className='editButton'>Edit Post</button>
+                                <button className='edit-btn'>Edit Post</button>
                             </Link>
-                            <button className='deleteButton' onClick={() => handleDelete(post.id)}>
+                            <button className='delete-btn' onClick={() => handleDelete(post.id)}>
                                 Delete Post
                             </button>
                         </div>

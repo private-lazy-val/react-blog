@@ -12,7 +12,7 @@ const NewPost = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        {fileName && setFileName('')}
+            fileName && setFileName('')
     }, []);
 
     const handleSubmit = async (e) => {
@@ -36,39 +36,44 @@ const NewPost = () => {
     }
 
     return (
-        <main className='NewPost'>
+        <main className='new-post'>
             <h2>New Post</h2>
-            <form className='newPostForm' onSubmit={handleSubmit}>
-                <label htmlFor='postTitle'>Title:</label>
+            <form className='new-post-form' onSubmit={handleSubmit}>
+                <label htmlFor='post-title'>Title:</label>
                 <input
-                    id='postTitle'
+                    id='post-title'
                     type='text'
                     required
                     value={postTitle}
                     onChange={(e) => setPostTitle(e.target.value)}
                 />
-                <label htmlFor='postBody'>Post:</label>
+                <label htmlFor='post-body'>Post:</label>
                 <textarea
-                    id='postBody'
+                    id='post-body'
                     required
                     value={postBody}
                     onChange={(e) => setPostBody(e.target.value)}
                 />
-                <label htmlFor='postImage'>Upload an image:</label>
-                <div className="custom-file-input">
+                <label htmlFor='post-image'>Upload an image:</label>
+                <div>
                     <input
-                        id='postImage'
+                        className="default-file-input"
+                        id='post-image'
                         type='file'
-                        style={{display: 'none'}}  // Hide the default input
+                        // Hide the default input
                         onChange={handleSetImage}
                     />
-                    <button className="chooseFileButton" type="button" onClick={() => document.getElementById('postImage').click()}>
+                    <button className="custom-file-input" type="button"
+                            onClick={() => document.getElementById('post-image').click()}>
                         Choose File
                     </button>
-                    <span>{fileName || 'No file chosen'}</span>  {/* Displaying the name of the file */}
-                    {fileName && <button className="removeFileButton" type="button" onClick={() => { setPostImage(null); setFileName(''); }}><IoMdClose/></button>}
+                    <span>{fileName || 'No file chosen'}</span> {/* Displaying the name of the file */}
+                    {fileName && <button className="remove-file-btn" type="button" onClick={() => {
+                        setPostImage(null);
+                        setFileName('');
+                    }}><IoMdClose/></button>}
                 </div>
-                <button className="submitButton" type='submit'>Submit</button>
+                <button className="submit-btn" type='submit'>Submit</button>
             </form>
         </main>
     );

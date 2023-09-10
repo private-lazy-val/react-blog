@@ -8,9 +8,9 @@ const Nav = () => {
     const showSearch = location.pathname === '/';
 
     return (
-        <nav className='Nav'>
+        <nav className='nav'>
             { showSearch && (
-            <form className='searchForm' onSubmit={(e) => e.preventDefault()}>
+            <form className='search-form' onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor='search'>Search Posts</label>
                 <input
                     id='search'

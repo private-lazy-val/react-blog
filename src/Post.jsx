@@ -5,14 +5,14 @@ const Post = ({post}) => {
         <article className='post'>
             <Link to={`post/${post.id}`}>
                 <h2>{post.title}</h2>
-                <p className='postDate'>{post.datetime}</p>
+                <p className='post-date'>{post.datetime}</p>
             </Link>
-            <p className='postBody'>{
+            <p className='post-body'>{
                 (post.body).length <= 80
                 ? post.body
                     : `${(post.body).slice(0, 80)}...`
             }</p>
-            {post.image && <img className='postImage_preview' src={post.image} alt={post.title}/>}
+            {post.image && <img className='post-image_preview' src={post.image} alt={post.title}/>}
         </article>
     );
 };

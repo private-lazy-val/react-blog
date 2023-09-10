@@ -19,11 +19,22 @@ body {
   background-color: #efefef;
 }
 
+img, svg {
+  display: block;
+  min-height: auto;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  min-width: fit-content;
+}
+
 #root {
   flex-grow: 1;
 }
 
-.App {
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,7 +42,7 @@ body {
   align-items: center;
 }
 
-.Header, .Footer {
+.header, .footer {
   width: 100%;
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
   padding: 1rem;
@@ -40,21 +51,21 @@ body {
   align-items: center;
 }
 
-.Header h1 {
+.header h1 {
   font-size: 1.5rem;
 }
 
-.Header svg {
+.header svg {
   font-size: 2rem;
 }
 
-.Footer {
+.footer {
   padding: 0.75rem;
   display: grid;
   place-content: center;
 }
 
-.Nav {
+.nav {
   position: sticky;
   top: 0;
   width: 100%;
@@ -63,16 +74,15 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  box-shadow: 0px 4px 5px lightgray;
-  z-index: 1;
+  box-shadow: 0 1px 5px lightgray;
 }
 
-.searchForm {
+.search-form {
   width: 80%;
   padding: 1rem 0 0 0.75rem;
 }
 
-.searchForm input[type="text"] {
+.search-form input[type="text"] {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
@@ -83,43 +93,38 @@ body {
   border: 1px solid gray;
 }
 
-.searchForm label {
+.search-form label {
   position: absolute;
   left: -99999px;
 }
 
-.Nav ul {
-  color: #fff;
+.nav ul {
   list-style-type: none;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
 }
 
-.Nav li {
+.nav li {
   padding: 0.9rem;
 }
 
-.Nav li a {
+.nav li a {
   padding: 0.9rem 0;
   text-decoration: none;
   color: #000;
 }
 
-.Nav li:hover,
-.Nav li:focus,
-.Nav li:hover a,
-.Nav li:focus a  {
+.nav li:hover,
+.nav li:focus,
+.nav li:hover a,
+.nav li:focus a  {
   background-color: #eee;
   color: #333;
-}
-
-.Nav li:hover a,
-.Nav li:focus a {
   cursor: pointer;
 }
 
-.Home, .NewPost, .PostPage, .About, .Missing {
+.home, .new-post, .post-page, .about, .missing {
   width: 100%;
   flex-grow: 1;
   padding: 1rem;
@@ -133,12 +138,12 @@ body {
   border-bottom: 1px solid lightgray;
 }
 
-.Home .post a {
+.home .post a {
   text-decoration: none;
 }
 
-.Home .post a,
-.Home .post a:visited {
+.home .post a,
+.home .post a:visited {
   color: #000;
 }
 
@@ -150,99 +155,55 @@ body {
   border-bottom: none;
 }
 
-.postDate {
+.post-date {
   font-size: 0.75rem;
   margin-top: 0.25rem;
 }
 
-.postBody {
+.post-body {
   margin: 1rem 0;
 }
 
-.postImage_full-size {
-  margin-bottom: .8rem;
-  min-height: auto;
-  max-width: 100%;
-}
-
-label[for="postImage"],
-input#postImage {
-  width: fit-content;
-}
-
-.postImage_preview {
-  display: inline-block;
+.post-image_preview {
   width: 50%;
-  height: auto;
-
+  max-width: 300px;
 }
-.newPostForm {
+
+.post-image_full-size {
+  max-width: 80%;
+  margin-bottom: .8rem;
+}
+
+.new-post-form {
   display: flex;
   flex-direction: column;
 }
 
-.newPostForm label {
+.new-post-form label {
   margin-top: 1rem;
 }
 
-.newPostForm input[type='text'],
-.newPostForm textarea {
+.new-post-form input[type='text'],
+.new-post-form textarea {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
   min-height: 48px;
   font-size: 1rem;
   padding: 0.25rem;
   border-radius: 0.25rem;
-  margin-right: 0.25rem;
   outline: none;
   border: 1px solid gray;
 }
 
-.newPostForm textarea {
+.new-post-form textarea {
   height: 100px;
 }
 
-.submitButton {
-  margin-top: 1rem;
-  height: 48px;
-  max-width: 300px;
-  min-width: fit-content;
-  border-radius: 10px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  background: #99C3FF;
-  border: none;
-  color: #fff;
+.default-file-input {
+  display: none;
 }
 
-.submitButton:hover,
-.submitButton:focus{
-  background: #ADCFFF;
-}
-
-.removeFileButton {
-  cursor: pointer;
-  border: none;
-  background: transparent;
-}
-
-.Missing p, .PostPage p, .NewPost p {
-  margin-top: 1rem;
-}
-
-.PostPage button {
-  height: 48px;
-  min-width: 48px;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer;
-  border: none;
-}
-
-.chooseFileButton {
+.custom-file-input {
   margin-top: 1rem;
   height: 48px;
   min-width: 48px;
@@ -256,38 +217,78 @@ input#postImage {
   background: #EF767A;
 }
 
-.chooseFileButton:hover,
-.chooseFileButton:focus{
+.custom-file-input:hover,
+.custom-file-input:focus{
   background: #F29195;
 }
 
-.deleteButton {
+.submit-btn {
+  margin-top: 1rem;
+  height: 48px;
+  max-width: 300px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background: #99C3FF;
+  color: #fff;
+}
+
+.submit-btn:hover,
+.submit-btn:focus{
+  background: #ADCFFF;
+}
+
+.remove-file-btn {
+  background: transparent;
+  vertical-align: middle;
+}
+
+.missing p, .post-page p, .about p {
+  margin-top: 1rem;
+}
+
+.post-page button {
+  height: 48px;
+  min-width: fit-content;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.delete-btn {
   background: #EF767A;
 }
 
-.deleteButton:hover,
-.deleteButton:focus
+.delete-btn:hover,
+.delete-btn:focus
 {
   background: #F29195;
 }
 
-.editButton {
+.edit-btn {
   background: #99C3FF;
 }
 
-.editButton:hover,
-.editButton:focus
+.edit-btn:hover,
+.edit-btn:focus
 {
   background: #ADCFFF;
 }
 
-.optionsButtons {
+.options-btn {
   display: flex;
   gap: .5rem;
 }
 
-.statusMsg {
+.status-msg {
   margin-top: 2rem;
+}
+
+.status-msg_err {
+  color: red;
 }
 
 @media only screen and (min-width: 610px) {
@@ -295,46 +296,45 @@ input#postImage {
     font-size: 22px;
   }
 
-  .Header h1 {
+  .header h1 {
     font-size: 2rem;
   }
 
-  .Nav {
+  .nav {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
   }
 
-  .Nav ul {
+  .nav ul {
     margin-left: auto;
   }
 
-  .Nav li:hover,
-  .Nav li:focus,
-  .Nav li:hover a,
-  .Nav li:focus a  {
+  .nav li:hover,
+  .nav li:focus,
+  .nav li:hover a,
+  .nav li:focus a  {
     background-color: #F5F5F5;
     color: #333;
     cursor: pointer;
   }
 
-  .searchForm {
+  .search-form {
     width: 50%;
     padding: .5rem 0;
   }
 
-  .searchForm input[type="text"] {
+  .search-form input[type="text"] {
     margin-left: 0.5rem;
   }
 
-  .newPostForm textarea {
+  .new-post-form textarea {
     height: 300px;
   }
 }
 
 @media only screen and (min-width: 992px) {
-  .Header svg {
+  .header svg {
     font-size: 3rem;
   }
-
 }
