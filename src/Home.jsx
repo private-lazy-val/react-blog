@@ -5,10 +5,6 @@ import DataContext from "./context/DataContext";
 const Home = () => {
     const {searchResults, fetchError, isLoading} = useContext(DataContext);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     return (
         <main className='home'>
             {isLoading && <p className='status-msg'>Loading posts...</p>}

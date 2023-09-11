@@ -1,5 +1,5 @@
 import {useParams, Link} from "react-router-dom"; // useParams allows to access the URL parameters from the current route
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import DataContext from "./context/DataContext";
 import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
@@ -10,11 +10,6 @@ const PostPage = () => {
     const {id} = useParams(); // id is de-structured directly from the object returned by useParams().
     // This ID is then used to find the relevant post from the posts array
     const post = posts.find(post => (post.id).toString() === id) // toString to use ===
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     const handleDelete = async (id) => {
         try {
             await api.delete(`/posts/${id}`);
