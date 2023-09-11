@@ -5,7 +5,6 @@ import {format} from "date-fns";
 import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
-
 const EditPost = () => {
     const [editTitle, setEditTitle] = useState('');
     const [editBody, setEditBody] = useState('');
