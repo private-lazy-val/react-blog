@@ -28,7 +28,7 @@ The back-end, which is a mock backend using json-server, is hosted on `Heroku`.
 ### Front-end (Vercel)
 [Visit the Live Website](https://pekingese-blog.vercel.app/)
 ### Back-end (Heroku)
-[Heroku API Base URL](https://pekignese-blog-2df0968b847a.herokuapp.com/)
+[Heroku API Base URL](https://pekingese-blog-8ceaec0c8c78.herokuapp.com/posts)
 
 ## Running the Application Locally
 
