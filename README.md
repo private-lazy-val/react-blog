@@ -5,8 +5,9 @@
 
 - [About the Project](#about-the-project)
 - [Features](#features)
-- [Running the Application](#running-the-application)
-- [Running the JSON Server](#running-the-json-server)
+- [Hosting](#hosting)
+- [Running the Application Locally](#running-the-application-locally)
+- [Running the JSON Server Locally](#running-the-json-server-locally)
 - [Screenshots](#screenshots)
 
 ## About the Project
@@ -19,19 +20,29 @@ Pekingese Corner is a React-based blog application offering in-depth information
 - **Custom Hooks** (`useAxiosFetch`, `useWindowSize`)
 - **Router hooks and links for navigation**
 - **Context API for state management**
+- 
+## Hosting
+The front-end of Pekingese Corner is hosted on `Vercel`. 
+The back-end, which is a mock backend using json-server, is hosted on `Heroku`.
 
-## Running the Application
+### Front-end (Vercel)
+[Visit the Live Website](https://pekingese-blog.vercel.app/)
+### Back-end (Heroku)
+[Heroku API Base URL](https://pekignese-blog-2df0968b847a.herokuapp.com/)
 
-To get the application up and running, you need to execute two separate commands in different terminal instances.
+## Running the Application Locally
 
+To get the application up and running on your local machine, you need to execute two separate commands in different terminal instances.
 
+### Front-end
 First, navigate to your project directory and run the following command to start the React application:
 
 ```bash
 npm start
 ````
 
-## Running the JSON Server
+## Running the JSON Server Locally
+
 This project uses `json-server` for a mock backend. Open another terminal instance, navigate to your project directory, and run the following command to start the JSON server:
 
 ```bash
