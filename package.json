@@ -13,12 +13,11 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -p 3500 -w data/db.json",
-    "deploy": "node server.js"
+    "server": "json-server -p 3500 -w data/db.json"
   },
   "eslintConfig": {
     "extends": [
