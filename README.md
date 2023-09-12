@@ -20,7 +20,7 @@ Pekingese Corner is a React-based blog application offering in-depth information
 - **Custom Hooks** (`useAxiosFetch`, `useWindowSize`)
 - **Router hooks and links for navigation**
 - **Context API for state management**
-- 
+
 ## Hosting
 The front-end of Pekingese Corner is hosted on `Vercel`. 
 The back-end, which is a mock backend using json-server, is hosted on `Heroku`.
@@ -46,7 +46,7 @@ npm start
 This project uses `json-server` for a mock backend. Open another terminal instance, navigate to your project directory, and run the following command to start the JSON server:
 
 ```bash
-npx json-server -p 3500 -w data/db.json
+npm run server
 ```
 
 ## Screenshots
