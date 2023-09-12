@@ -1,6 +1,7 @@
 import {createContext, useState, useEffect} from 'react';
 import api from '../api/posts';
 import useAxiosFetch from '../hooks/useAxiosFetch';
+
 // React Context is a way to pass data through the component tree without having to pass props down manually at every level.
 const DataContext = createContext({});
 
