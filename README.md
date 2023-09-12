@@ -38,7 +38,7 @@ To get the application up and running on your local machine, you need to execute
 First, navigate to your project directory and run the following command to start the React application:
 
 ```bash
-npm start
+npm run dev
 ````
 
 ## Running the JSON Server Locally
