@@ -34,10 +34,12 @@ const EditPost = () => {
                     return post
                 }
             }));
+
             setEditTitle('');
             setEditBody('');
             setPostImage(null);
             setFileName('');
+
             navigate('/');
         } catch (err) {
             console.log(`Error: ${err.message}`);

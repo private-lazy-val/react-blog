@@ -24,10 +24,12 @@ const NewPost = () => {
             const response = await api.post('/posts', newPost);
             const allPosts = [...posts, response.data];
             setPosts(allPosts);
+
             setPostTitle('');
             setPostBody('');
             setPostImage(null);
             setFileName('');
+
             navigate('/'); // after submitting a new post, the navigate('/') function call will change the application's current route to the home page
             // the hook is non user-initiated
         } catch (err) {

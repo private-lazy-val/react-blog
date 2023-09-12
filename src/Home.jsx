@@ -1,5 +1,5 @@
 import Feed from './Feed';
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import DataContext from "./context/DataContext";
 
 const Home = () => {

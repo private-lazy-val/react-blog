@@ -1,4 +1,5 @@
 import {createContext, useState, useEffect} from 'react';
+import api from '../api/posts';
 import useAxiosFetch from '../hooks/useAxiosFetch';
 // React Context is a way to pass data through the component tree without having to pass props down manually at every level.
 const DataContext = createContext({});
@@ -10,7 +11,7 @@ export const DataProvider = ({children}) => {
     const [postImage, setPostImage] = useState(null);
     const [fileName, setFileName] = useState('');
 
-    const {data, fetchError, isLoading} = useAxiosFetch('http://localhost:3500/posts');
+    const {data, fetchError, isLoading} = useAxiosFetch(api.getUri() + "/posts");
 
     useEffect(() => {
         setPosts(data);
