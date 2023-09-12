@@ -17,7 +17,7 @@ Pekingese Corner is a React-based blog application offering in-depth information
 
 - **Dynamic Routing using React Router v6**
 - **Data Fetching using Axios**
-- **Custom Hooks** (`useAxiosFetch`, `useWindowSize`)
+- **Custom Hooks** (`useAxiosFetch`, `useWindowSize`, `useScrollToTop`)
 - **Router hooks and links for navigation**
 - **Context API for state management**
 
