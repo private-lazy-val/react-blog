@@ -1,24 +1,18 @@
-import {useParams, Link} from "react-router-dom"; // useParams allows to access the URL parameters from the current route
-import {useContext} from "react";
-import DataContext from "./context/DataContext";
-import api from "./api/posts";
-import {useNavigate} from 'react-router-dom';
+import {useParams, Link, useNavigate} from "react-router-dom"; // useParams allows to access the URL parameters from the current route
+import {useStoreState, useStoreActions} from "easy-peasy";
 
 const PostPage = () => {
-    const {posts, setPosts} = useContext(DataContext);
     const navigate = useNavigate();
     const {id} = useParams(); // id is de-structured directly from the url returned by useParams().
     // This ID is then used to find the relevant post from the posts array
-    const post = posts.find(post => (post.id).toString() === id) // toString to use ===
-    const handleDelete = async (id) => {
-        try {
-            await api.delete(`/posts/${id}`);
-            const postsList = posts.filter((post) => post.id !== id);
-            setPosts(postsList);
-            navigate('/');
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
+
+    const getPostById = useStoreState((state) => state.getPostById);
+    const deletePost = useStoreActions((actions) => actions.deletePost);
+    const post = getPostById(id);
+
+    const handleDelete = (id) => {
+        deletePost(id);
+        navigate('/');
     }
 
     return (

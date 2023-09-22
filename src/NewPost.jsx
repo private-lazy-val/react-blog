@@ -1,40 +1,33 @@
-import {useState, useContext, useEffect} from "react";
-import DataContext from "./context/DataContext";
 import {format} from "date-fns";
-import api from "./api/posts";
 import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
+import {useStoreState, useStoreActions} from "easy-peasy";
 
 const NewPost = () => {
-    const [postTitle, setPostTitle] = useState('');
-    const [postBody, setPostBody] = useState('');
-    const {posts, setPosts, setPostImage, postImage, fileName, setFileName, handleSetImage} = useContext(DataContext);
     const navigate = useNavigate();
 
-    useEffect(() => {
-            fileName && setFileName('')
-    }, []);
+    const posts = useStoreState((state) => state.posts);
+    const postTitle = useStoreState((state) => state.postTitle);
+    const postBody = useStoreState((state) => state.postBody);
+    const postImage = useStoreState((state) => state.postImage);
+    const fileName = useStoreState((state) => state.fileName);
 
-    const handleSubmit = async (e) => {
+    const savePost = useStoreActions((actions) => actions.savePost);
+    const setPostTitle = useStoreActions((actions) => actions.setPostTitle);
+    const setPostBody = useStoreActions((actions) => actions.setPostBody);
+    const setPostImage =  useStoreActions((actions) => actions.setPostImage);
+    const setFileName = useStoreActions((actions) => actions.setFileName);
+    const uploadFile = useStoreActions((actions) => actions.uploadFile);
+
+    fileName && setFileName('');
+    const handleSubmit = (e) => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
         const newPost = {id, title: postTitle, datetime, body: postBody, image: postImage, file_name: fileName};
-        try {
-            const response = await api.post('/posts', newPost);
-            const allPosts = [...posts, response.data];
-            setPosts(allPosts);
-
-            setPostTitle('');
-            setPostBody('');
-            setPostImage(null);
-            setFileName('');
-
-            navigate('/'); // after submitting a new post, the navigate('/') function call will change the application's current route to the home page
-            // the hook is non user-initiated
-        } catch (err) {
-            console.log(`Error: ${err.message}`);
-        }
+        savePost(newPost);
+        navigate('/'); // after submitting a new post, the navigate('/') function call will change the application's current route to the home page
+        // the hook is non user-initiated
     }
 
     return (
@@ -63,7 +56,7 @@ const NewPost = () => {
                         id='post-image'
                         type='file'
                         // Hide the default input
-                        onChange={handleSetImage}
+                        onChange={(e) => uploadFile(e)}
                     />
                     <button className="custom-file-input" type="button"
                             onClick={() => document.getElementById('post-image').click()}>
