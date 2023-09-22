@@ -1,5 +1,6 @@
 import {createStore, action, thunk, computed} from "easy-peasy";
 import api from './api/posts';
+import {format} from "date-fns";
 
 export default createStore({
     posts: [],
@@ -50,6 +51,8 @@ export default createStore({
             actions.setPosts([...posts, response.data]);
             actions.setPostTitle('');
             actions.setPostBody('');
+            actions.setPostImage(null);
+            actions.setFileName('');
         } catch (err) {
             console.log(`Error: ${err.message}`);
         }
@@ -71,6 +74,8 @@ export default createStore({
             actions.setPosts(posts.map(post => post.id === id ? {...response.data} : post));
             actions.setEditTitle('');
             actions.setEditBody('');
+            actions.setPostImage(null);
+            actions.setFileName('');
         } catch (err) {
             console.log(`Error: ${err.message}`);
         }

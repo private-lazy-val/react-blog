@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import {format} from "date-fns";
 import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
@@ -13,13 +14,20 @@ const NewPost = () => {
     const fileName = useStoreState((state) => state.fileName);
 
     const savePost = useStoreActions((actions) => actions.savePost);
+    const uploadFile = useStoreActions((actions) => actions.uploadFile);
+
     const setPostTitle = useStoreActions((actions) => actions.setPostTitle);
     const setPostBody = useStoreActions((actions) => actions.setPostBody);
     const setPostImage =  useStoreActions((actions) => actions.setPostImage);
     const setFileName = useStoreActions((actions) => actions.setFileName);
-    const uploadFile = useStoreActions((actions) => actions.uploadFile);
 
-    fileName && setFileName('');
+
+    useEffect(() => {
+        fileName && setFileName('');
+        postTitle && setPostTitle('');
+        postBody && setPostBody('');
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const id = posts.length ? posts[posts.length - 1].id + 1 : 1;
@@ -51,11 +59,11 @@ const NewPost = () => {
                 />
                 <label htmlFor='post-image'>Upload an image:</label>
                 <div>
+                    {/* Hidden default input */}
                     <input
                         className="default-file-input"
                         id='post-image'
                         type='file'
-                        // Hide the default input
                         onChange={(e) => uploadFile(e)}
                     />
                     <button className="custom-file-input" type="button"

@@ -15,11 +15,12 @@ const EditPost = () => {
     const getPostById = useStoreState((state) => state.getPostById);
 
     const editPost = useStoreActions((actions) => actions.editPost);
+    const uploadFile = useStoreActions((actions) => actions.uploadFile);
+
     const setEditTitle = useStoreActions((actions) => actions.setEditTitle);
     const setEditBody = useStoreActions((actions) => actions.setEditBody);
     const setFileName = useStoreActions((actions) => actions.setFileName);
     const setPostImage = useStoreActions((actions) => actions.setPostImage);
-    const uploadFile = useStoreActions((actions) => actions.uploadFile);
 
     const post = getPostById(id);
 
@@ -66,7 +67,6 @@ const EditPost = () => {
                                 className="default-file-input"
                                 id='post-image'
                                 type='file'
-                                // Hide the default input
                                 onChange={(e) => uploadFile(e)}
                             />
                             <button className="custom-file-input" type="button"
