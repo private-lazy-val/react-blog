@@ -20,7 +20,7 @@ const EditPost = () => {
             setPostImage(post.image);
             setFileName(post.file_name);
         }
-    }, [post])
+    }, [post, setFileName, setEditBody, setPostImage, setEditTitle])
 
     const handleEdit = async (id) => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');

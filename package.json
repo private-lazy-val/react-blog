@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^1.5.0",
+    "concurrently": "^8.2.1",
     "date-fns": "^2.30.0",
     "json-server": "^0.17.3",
     "react": "^18.2.0",
@@ -13,8 +14,8 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "react-scripts start",
+    "start": "react-scripts start",
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
     "server": "json-server -p 3500 -w data/db.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
