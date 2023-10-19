@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +11,12 @@ html {
 
 body {
   min-height: 100vh; /* not necessary, I do it out of habit */
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Futura', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   background-color: #fef6e4;
+  color: #001858;
 }
 
 img, svg {
@@ -42,9 +42,12 @@ button {
   align-items: center;
 }
 
+.header {
+  background-color: #f3d2c1;
+}
+
 .header, .footer {
   width: 100%;
-  background-color: #8bd3dd;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -63,13 +66,14 @@ button {
   padding: 0.75rem;
   display: grid;
   place-content: center;
+  background-color: #8bd3dd;
 }
 
 .nav {
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: #f582ae;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -83,7 +87,7 @@ button {
 }
 
 .search-form input[type="text"] {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
   min-height: 48px;
   font-size: 1rem;
@@ -91,6 +95,10 @@ button {
   border-radius: 0.25rem;
   outline: none;
   border: 1px solid gray;
+  background-color: #fffffe;
+}
+.search-form input[type="text"]::placeholder {
+  color: #172c66;
 }
 
 .search-form label {
@@ -109,23 +117,22 @@ button {
   height: 40px;
 }
 
-.nav li a {
+.nav li a,
+.nav li a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   width: 100%;
   height: 100%;
-  color: #000;
-
+  color: #001858;
 }
 
 .nav li:hover,
 .nav li:focus,
 .nav li:hover a,
 .nav li:focus a  {
-  background-color: #eee;
-  color: #333;
+  background-color: #8bd3dd;
   cursor: pointer;
 }
 
@@ -134,7 +141,7 @@ button {
   flex-grow: 1;
   padding: 1rem;
   overflow-y: auto;
-  background-color: #fff;
+  background-color: #fef6e4;
 }
 
 .post {
@@ -147,9 +154,9 @@ button {
   text-decoration: none;
 }
 
-.home .post a,
+
 .home .post a:visited {
-  color: #000;
+  color: #001858;
 }
 
 .post:first-child {
@@ -323,17 +330,22 @@ button {
     height: 100%;
   }
 
+  .nav li a,
+  .nav li a:visited{
+    width: 100px;
+    height: 100%;
+  }
+
   .nav li:hover,
   .nav li:focus,
   .nav li:hover a,
   .nav li:focus a  {
-    background-color: #F5F5F5;
-    color: #333;
+    background-color: #8bd3dd;
     cursor: pointer;
   }
 
   .search-form {
-    width: 50%;
+    width: 30%;;
     padding: .5rem 0;
   }
 
@@ -349,5 +361,9 @@ button {
 @media only screen and (min-width: 992px) {
   .header svg {
     font-size: 3rem;
+  }
+
+  .search-form {
+    width: 30%;
   }
 }
