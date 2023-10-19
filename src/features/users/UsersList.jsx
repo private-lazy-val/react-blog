@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {selectAllUsers} from "./usersSlice";
+import styles from './styles/UsersList.module.css';
 
 const UsersList = () => {
     const users = useSelector(selectAllUsers);
@@ -11,10 +12,10 @@ const UsersList = () => {
     ))
 
     return (
-        <section>
+        <main className='users'>
             <h2>Users</h2>
-            <ul>{renderedUsers}</ul>
-        </section>
+            <ul className={styles['users-list']}>{renderedUsers}</ul>
+        </main>
     )
 }
 

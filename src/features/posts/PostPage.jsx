@@ -2,7 +2,8 @@ import {useParams, Link} from "react-router-dom"; // useParams allows to access 
 import {useSelector} from "react-redux";
 import {selectPostById} from "./postsSlice";
 import ReactionButtons from './ReactionButtons';
-import {selectUserById} from "../users/usersSlice";
+import styles from "./styles/Post.module.css";
+import PostAuthor from "./PostAuthor";
 
 const PostPage = () => {
     const {postId} = useParams();
@@ -27,19 +28,23 @@ const PostPage = () => {
         <main className='post-page'>
             <article className='post'>
                 {<>
-                        <h2>{post.title}</h2>
+                    <h2>{post.title}</h2>
+                    <div className={styles.credits}>
                         <p className='post-date'>{post.date}</p>
-                        <p className='post-body'>{post.body}</p>
-                        {post.image && <img className='post-image_full-size' src={post.image} alt={post.title}/>}
-                        <p>{post.user_name}</p>
+                        <Link to={`/user/${post.user_id}`}>
+                            <PostAuthor userId={post.user_id}></PostAuthor>
+                        </Link>
+                    </div>
+                    <p className='post-body'>{post.body}</p>
+                    {post.image && <img className='post-image_full-size' src={post.image} alt={post.title}/>}
 
-                        <div className='options-btn'>
-                            <Link to={`/edit/${post.id}`}>
-                                <button className='edit-btn'>Edit Post</button>
-                            </Link>
-                        </div>
-                    <ReactionButtons post={post} />
-                    </>
+                    <div className='options-btn'>
+                        <Link to={`/edit/${post.id}`}>
+                            <button className='edit-btn'>Edit Post</button>
+                        </Link>
+                    </div>
+                    <ReactionButtons post={post}/>
+                </>
                 }
             </article>
         </main>

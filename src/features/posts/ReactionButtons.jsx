@@ -1,5 +1,6 @@
 import {useDispatch} from "react-redux";
 import {updateReaction} from "./postsSlice";
+import styles from './styles/ReactionButtons.css';
 
 const reactionEmoji = {
     thumbsUp: '👍',
@@ -17,7 +18,7 @@ const ReactionButtons = ({post}) => {
             <button
                 key={name}
                 type="button"
-                className="reactionButton"
+                className={styles['reaction-btn']}
                 onClick={() => dispatch(updateReaction({postId: post.id, reaction: name}))}
             >
                 {emoji} {post.reactions[name]}

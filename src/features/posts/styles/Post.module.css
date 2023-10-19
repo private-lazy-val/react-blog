@@ -1,0 +1,5 @@
+.credits {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}

@@ -64,7 +64,16 @@ const EditPost = () => {
         if (canSave) {
             try {
                 setIsPending(true);
-                await dispatch(editPost({id: post.id, title, body: content, user_id: post.user_id, user_name: post.user_name, image, file_name: fileName, reactions: post.reactions})).unwrap();
+                await dispatch(editPost({
+                    id: post.id,
+                    title,
+                    body: content,
+                    user_id: post.user_id,
+                    user_name: post.user_name,
+                    image,
+                    file_name: fileName,
+                    reactions: post.reactions
+                })).unwrap();
                 setTitle('');
                 setContent('');
                 setImage(null);
@@ -97,33 +106,34 @@ const EditPost = () => {
 
     return (
         <main className='new-post'>
-                <>
-                    <h2>Edit Post</h2>
-                    <form className='new-post-form' onSubmit={(e) => e.preventDefault()}>
-                        <label htmlFor='post-title'>Title:</label>
-                        <input
-                            id='post-title'
-                            type='text'
-                            required
-                            value={title}
-                            onChange={onTitleChanged}
-                        />
-                        <label htmlFor='post-author'>Author:</label>
-                        <input
-                            id='post-author'
-                            type='text'
-                            required
-                            value={post.user_name}
-                            disabled={true}
-                        />
-                        <label htmlFor='post-body'>Content:</label>
-                        <textarea
-                            id='post-body'
-                            required
-                            value={content}
-                            onChange={onContentChanged}
-                        />
-                        <label htmlFor='post-image'>Upload an image:</label>
+            <>
+                <h2>Edit Post</h2>
+                <form className='new-post-form' onSubmit={(e) => e.preventDefault()}>
+                    <label htmlFor='post-title'>Title:</label>
+                    <input
+                        id='post-title'
+                        type='text'
+                        required
+                        value={title}
+                        onChange={onTitleChanged}
+                    />
+                    <label htmlFor='post-author'>Author:</label>
+                    <input
+                        id='post-author'
+                        type='text'
+                        required
+                        value={post.user_name}
+                        disabled={true}
+                    />
+                    <label htmlFor='post-body'>Content:</label>
+                    <textarea
+                        id='post-body'
+                        required
+                        value={content}
+                        onChange={onContentChanged}
+                    />
+                    <label htmlFor='post-image'>Upload an image:</label>
+                    <div className='edit-btns'>
                         <div>
                             <input
                                 className="default-file-input"
@@ -142,12 +152,16 @@ const EditPost = () => {
                                 setFileName('');
                             }}><IoMdClose/></button>}
                         </div>
-                        <button className="submit-btn" type='submit' onClick={() => handleEdit(post.id)}>Submit</button>
-                        <button className='delete-btn' onClick={() => handleDelete(post.id)}>
+                        <button className='delete-btn' type='button' onClick={() => handleDelete(post.id)}>
                             Delete Post
                         </button>
-                    </form>
-                </>
+                    </div>
+
+                    <button className="submit-btn" type='submit' onClick={() => handleEdit(post.id)}>
+                        Submit
+                    </button>
+                </form>
+            </>
         </main>
     );
 };

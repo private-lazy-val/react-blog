@@ -58,7 +58,7 @@ export const addNewPost = createAsyncThunk(
 
         const updatedPost = {
             ...newPost,
-            date: format(new Date(), 'MMMM dd, yyyy pp'),
+            date: format(new Date(), 'MMMM dd, yyyy'),
             user_id: user.id,
             reactions: {
                 thumbsUp: 0,
@@ -81,7 +81,7 @@ export const editPost = createAsyncThunk('posts/editePost',
         const {id} = editedPost;
         const updatedPost = {
             ...editedPost,
-            date: format(new Date(), 'MMMM dd, yyyy pp')
+            date: format(new Date(), 'MMMM dd, yyyy')
         };
         const response = await axios.put(`${POSTS_URL}/${id}`, updatedPost);
         if (response.data && response.status === 200) return response.data;
