@@ -65,7 +65,7 @@ export const addNewPost = createAsyncThunk(
                 wow: 0,
                 heart: 0,
                 rocket: 0,
-                coffee: 0
+                starStruck: 0
             }
         };
         const response = await axios.post(POSTS_URL, updatedPost);

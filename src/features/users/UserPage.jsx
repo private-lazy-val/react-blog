@@ -7,9 +7,9 @@ import styles from './styles/UserPage.module.css';
 const UserPage = () => {
     const { userId } = useParams();
 
-    const user = useSelector(state => selectUserById(state, Number(userId)));
+    const user = useSelector(state => selectUserById(state, userId));
 
-    const postsForUser = useSelector(state => selectPostsByUser(state, Number(userId)));
+    const postsForUser = useSelector(state => selectPostsByUser(state, userId));
 
     const postTitles = postsForUser.map(post => (
         <li key={post.id}>

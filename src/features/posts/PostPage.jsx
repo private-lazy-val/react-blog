@@ -38,12 +38,12 @@ const PostPage = () => {
                     <p className='post-body'>{post.body}</p>
                     {post.image && <img className='post-image_full-size' src={post.image} alt={post.title}/>}
 
+                    <ReactionButtons post={post}/>
                     <div className='options-btn'>
                         <Link to={`/edit/${post.id}`}>
                             <button className='edit-btn'>Edit Post</button>
                         </Link>
                     </div>
-                    <ReactionButtons post={post}/>
                 </>
                 }
             </article>
