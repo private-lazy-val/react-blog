@@ -4,17 +4,20 @@
 ## Table of Contents
 
 - [About the Project](#about-the-project)
+- [Branch Details](#branch-details)
 - [Features](#features)
 - [Hosting](#hosting)
 - [Running the Application Locally](#running-the-application-locally)
-- [Running the JSON Server Locally](#running-the-json-server-locally)
 - [Screenshots](#screenshots)
 
 ## About the Project
-Pekingese Corner is a React-based blog application offering in-depth information on Pekingese dogs. The app incorporates React Router v6, Axios, custom hooks, and the Context API.
+Pekingese Corner is a React-based open platform offering in-depth information on Pekingese dogs. The app incorporates Redux, React Router v6, Axios, custom hooks, and Context API.
+
+## Branch Details
+- **Main Branch: Utilizes Redux for state management with the integration of AsyncThunk and Entity Adapter.**
+- **feature/context-api Branch: Uses Context API for state management.**
 
 ## Features
-
 - **Dynamic Routing using React Router v6**
 - **Data Fetching using Axios**
 - **Custom Hooks** (`useAxiosFetch`, `useWindowSize`, `useScrollToTop`)
@@ -32,22 +35,11 @@ The back-end, which is a mock backend using json-server, is hosted on `Heroku`.
 
 ## Running the Application Locally
 
-To get the application up and running on your local machine, you need to execute two separate commands in different terminal instances.
-
-### Front-end
-First, navigate to your project directory and run the following command to start the React application:
+To get the application up and running, as well as to start `json-server` mock backend on your local machine, execute the following command:
 
 ```bash
 npm run dev
 ````
-
-## Running the JSON Server Locally
-
-This project uses `json-server` for a mock backend. Open another terminal instance, navigate to your project directory, and run the following command to start the JSON server:
-
-```bash
-npm run server
-```
 
 ## Screenshots
 

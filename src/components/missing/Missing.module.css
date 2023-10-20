@@ -1,0 +1,19 @@
+.missing {
+    width: 100%;
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: var(--background);
+}
+
+.missing p {
+    margin-top: 1rem;
+}
+
+.go-back {
+    color: var(--accent);
+}
+
+.go-back:hover {
+    color: var(--secondary);
+}

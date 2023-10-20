@@ -1,6 +1,7 @@
 import {Link, useLocation} from 'react-router-dom';
 import {useContext} from "react";
-import PostSearchContext from "../context/PostSearchContext";
+import PostSearchContext from "../../context/PostSearchContext";
+import styles from './Nav.module.css';
 
 const Nav = () => {
     const {search, setSearch} = useContext(PostSearchContext);
@@ -9,9 +10,9 @@ const Nav = () => {
     const showSearch = location.pathname === '/';
 
     return (
-        <nav className='nav'>
+        <nav className={styles.nav}>
             { showSearch && (
-            <form className='search-form' onSubmit={(e) => e.preventDefault()}>
+            <form className={styles.search} onSubmit={(e) => e.preventDefault()}>
                 <label htmlFor='search'>Search Posts</label>
                 <input
                     id='search'

@@ -38,10 +38,14 @@ html {
 
 body {
     min-height: 100vh; /* not necessary, I do it out of habit */
-    font-family: var(--ff-futura-ss);
     display: flex;
+    font-family: var(--ff-futura-ss);
     color: var(--dark-headline);
     background-color: var(--background);
+}
+
+#root {
+    flex-grow: 1;
 }
 
 img, svg {
@@ -65,114 +69,7 @@ input, textarea {
     color: var(--dark-headline);
 }
 
-#root {
-    flex-grow: 1;
-}
-
-.app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.header {
-    background-color: var(--main);
-}
-
-.header, .footer {
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header h1 {
-    font-size: 1.5rem;
-}
-
-.header svg {
-    font-size: 2rem;
-}
-
-.footer {
-    padding: 0.75rem;
-    display: grid;
-    place-content: center;
-    background-color: var(--secondary);
-}
-
-.nav {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background-color: var(--accent);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    box-shadow: 0 1px 5px lightgray;
-}
-
-.search-form {
-    width: 80%;
-    padding: 1rem 0 0 0.75rem;
-}
-
-.search-form input[type="text"] {
-    font-family: var(--ff-montserrat-ss);
-    font-weight: var(--fw-400);
-    width: 100%;
-    min-height: 48px;
-    font-size: 1rem;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    outline: none;
-    border: 1px solid var(--dark-headline);
-    background-color: var(--white);
-}
-
-.search-form input[type="text"]::placeholder {
-    color: var(--light-headline);
-}
-
-.search-form label {
-    position: absolute;
-    left: -99999px;
-}
-
-.nav ul {
-    list-style-type: none;
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.nav li {
-    width: 70px;
-    height: 40px;
-}
-
-.nav li a,
-.nav li a:visited {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: var(--dark-headline);
-}
-
-.nav li:hover,
-.nav li:focus,
-.nav li:hover a,
-.nav li:focus a {
-    background-color: var(--secondary);
-    cursor: pointer;
-}
-
-.home, .new-post, .post-page, .about, .users, .user, .missing {
+.home, .new-post, .post-page, .about, .users, .user {
     width: 100%;
     flex-grow: 1;
     padding: 1rem;
@@ -205,6 +102,8 @@ main {
 .post-date {
     font-size: 0.75rem;
     color: var(--accent);
+    margin-top: 0.3rem;
+
 }
 
 .post-body {
@@ -329,7 +228,7 @@ main {
     color: var(--dark-headline);
 }
 
-.missing p, .post-page p, .about p {
+.about p {
     margin-top: 1rem;
 }
 
@@ -351,62 +250,7 @@ main {
         font-size: 22px;
     }
 
-    .header h1 {
-        font-size: 2rem;
-    }
-
-    .nav {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        height: 70px;
-    }
-
-    .nav ul {
-        margin-left: auto;
-        height: 100%;
-        align-items: center;
-    }
-
-    .nav li {
-        width: 100px;
-        height: 100%;
-    }
-
-    .nav li a,
-    .nav li a:visited {
-        width: 100px;
-        height: 100%;
-    }
-
-    .nav li:hover,
-    .nav li:focus,
-    .nav li:hover a,
-    .nav li:focus a {
-        background-color: var(--secondary);
-        cursor: pointer;
-    }
-
-    .search-form {
-        width: 30%;;
-        padding: .5rem 0;
-    }
-
-    .search-form input[type="text"] {
-        margin-left: 0.5rem;
-    }
-
     .new-post-form textarea {
         height: 300px;
-    }
-}
-
-@media only screen and (min-width: 992px) {
-    .header svg {
-        font-size: 3rem;
-    }
-
-    .search-form {
-        width: 30%;
     }
 }

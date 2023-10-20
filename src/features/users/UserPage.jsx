@@ -3,6 +3,7 @@ import { selectPostsByUser } from '../posts/postsSlice';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './styles/UserPage.module.css';
+import Missing from "../../components/missing/Missing";
 
 const UserPage = () => {
     const { userId } = useParams();
@@ -16,6 +17,12 @@ const UserPage = () => {
             <Link to={`/post/${post.id}`}>{post.title}</Link>
         </li>
     ))
+
+    if (!user) {
+        return (
+            <Missing/>
+        )
+    }
 
     return (
         <main className='user'>

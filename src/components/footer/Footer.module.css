@@ -1,0 +1,7 @@
+.footer {
+    width: 100%;
+    display: flex;
+    padding: 0.75rem;
+    place-content: center;
+    background-color: var(--secondary);
+}

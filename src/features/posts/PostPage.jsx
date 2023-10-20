@@ -4,6 +4,7 @@ import {selectPostById} from "./postsSlice";
 import ReactionButtons from './ReactionButtons';
 import styles from "./styles/Post.module.css";
 import PostAuthor from "./PostAuthor";
+import Missing from "../../components/missing/Missing";
 
 const PostPage = () => {
     const {postId} = useParams();
@@ -14,13 +15,7 @@ const PostPage = () => {
 
     if (!post) {
         return (
-            <>
-                <h2>Post Not Found</h2>
-                <p>Well, that's disappointing.</p>
-                <p>
-                    <Link to='/'>Visit our Homepage</Link>
-                </p>
-            </>
+            <Missing/>
         )
     }
 

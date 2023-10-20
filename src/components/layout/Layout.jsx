@@ -1,11 +1,12 @@
-import Header from "./Header";
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Header from "../header/Header";
+import Nav from "../nav/Nav";
+import Footer from "../footer/Footer";
 import {Outlet} from 'react-router-dom';
+import styles from './Layout.module.css';
 
 const Layout = () => {
     return (
-        <div className='app'>
+        <div className={styles.app}>
             <Header title='Pekingese Corner &#128054;'/>
             <Nav/>
             <Outlet/>
