@@ -3,26 +3,19 @@
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
+- [About](#about)
 - [Branch Details](#branch-details)
-- [Features](#features)
 - [Hosting](#hosting)
 - [Running the Application Locally](#running-the-application-locally)
+- [Running the JSON Server Locally](#running-the-json-server-locally)
 - [Screenshots](#screenshots)
 
-## About the Project
+## About
 Pekingese Corner is a React-based open platform offering in-depth information on Pekingese dogs. The app incorporates Redux, React Router v6, Axios, custom hooks, and Context API.
 
 ## Branch Details
 - **Main Branch**: Utilizes `Redux` for state management with the integration of `AsyncThunk` and `Entity Adapter`.
 - **feature/context-api Branch**: Uses `Context API` for state management.
-
-## Features
-- **Dynamic Routing using React Router v6**
-- **Data Fetching using Axios**
-- **Custom Hooks** (`useAxiosFetch`, `useWindowSize`, `useScrollToTop`)
-- **Router hooks and links for navigation**
-- **Context API**
 
 ## Hosting
 The front-end of Pekingese Corner is hosted on `Vercel`. 
@@ -33,13 +26,23 @@ The back-end, which is a mock backend using json-server, is hosted on `Heroku`.
 ### Back-end (Heroku)
 [Heroku API Base URL](https://pekingese-blog-8ceaec0c8c78.herokuapp.com/)
 
-## Running the Application Locally
+## Running the Application locally
 
-To get the application up and running, as well as to start `json-server` mock backend on your local machine, execute the following command:
+To get the application up and running, you need to execute two separate commands in different terminal instances.
+
+First, navigate to your project directory and run the following command to start the React application:
 
 ```bash
-npm run dev
+npm start
 ````
+
+## Running the JSON Server locally
+This project uses `json-server` for a mock backend. Open another terminal instance, navigate to your project directory, and run the following command to start the JSON server:
+
+```bash
+npx json-server -p 3500 -w data/db.json
+```
+
 
 ## Screenshots
 
