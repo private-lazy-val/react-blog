@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
-import {selectUserById} from "../users/usersSlice";
-import styles from './styles/PostAuthor.module.css';
+import {selectUserById} from "../../users/usersSlice";
+import styles from './PostAuthor.module.css';
 
 import React from 'react';
 

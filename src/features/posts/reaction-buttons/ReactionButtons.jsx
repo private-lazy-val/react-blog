@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
-import {updateReaction} from "./postsSlice";
-import styles from './styles/ReactionButtons.module.css';
+import {updateReaction} from "../postsSlice";
+import styles from './ReactionButtons.module.css';
 
 const reactionEmoji = {
     thumbsUp: '👍',

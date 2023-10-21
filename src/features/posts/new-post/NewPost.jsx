@@ -2,8 +2,9 @@ import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
-import {addNewPost} from './postsSlice';
-import styles from './styles/NewPost.module.css';
+import {addNewPost} from '../postsSlice';
+import styles from './NewPost.module.css';
+import {handleSetImage} from "../../../utils/utils";
 
 const NewPost = () => {
     const dispatch = useDispatch();
@@ -21,23 +22,6 @@ const NewPost = () => {
     const onUserNameChanged = e => setUserName(e.target.value);
 
     const canSave = [title, content, userName].every(Boolean) && isPending === false;
-
-    const handleSetImage = (e) => {
-        if (e && e.target && e.target.files) {
-            // the user selects a file via the file input dialog. This triggers.
-            // the onChange event for the file input, and the handleSetImage function is called.
-            const file = e.target.files[0];
-            const reader = new FileReader(); // this is a JS object that can read data from Blob or File objects.
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-            reader.onloadend = () => { // onloadend event handler for the FileReader will update the state to hold the Data URL representation
-                // of the file once the read is complete in readAsDataURL.
-                setImage(reader.result);
-                setFileName(file.name);
-            };
-        }
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -102,7 +86,7 @@ const NewPost = () => {
                         id='post-image'
                         type='file'
                         // Hide the default input
-                        onChange={handleSetImage}
+                        onChange={(e) => handleSetImage(e, setImage, setFileName)}
                     />
                     <button className='custom-file-input' type="button"
                             onClick={() => document.getElementById('post-image').click()}>

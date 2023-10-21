@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import styles from './styles/UsersList.module.css';
+import styles from './UsersList.module.css';
 import {useContext} from "react";
-import UserSearchContext from "../../context/UserSearchContext";
+import UserSearchContext from "../../../context/UserSearchContext";
 
 const UsersList = () => {
     const {searchUserResults} = useContext(UserSearchContext);

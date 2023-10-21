@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom';
 import {useSelector} from "react-redux";
-import {selectPostById} from "./postsSlice";
-import ReactionButtons from "./ReactionButtons";
-import PostAuthor from "./PostAuthor";
-import styles from './styles/Post.module.css';
-import {truncateOnWord} from "../../utils/utils";
+import {selectPostById} from "../postsSlice";
+import ReactionButtons from "../reaction-buttons/ReactionButtons";
+import PostAuthor from "../post-author/PostAuthor";
+import styles from './Post.module.css';
+import {truncateOnWord} from "../../../utils/utils";
 
 const Post = ({postId}) => {
     const post = useSelector(state => selectPostById(state, postId));

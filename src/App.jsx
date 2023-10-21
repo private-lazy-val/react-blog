@@ -1,15 +1,15 @@
-import Home from './features/posts/Home';
-import NewPost from './features/posts/NewPost';
-import PostPage from './features/posts/PostPage';
+import Home from './features/posts/home/Home';
+import NewPost from './features/posts/new-post/NewPost';
+import PostPage from './features/posts/post-page/PostPage';
 import About from './components/about/About';
 import Missing from './components/missing/Missing';
 import Layout from './components/layout/Layout';
-import EditPost from "./features/posts/EditPost";
+import EditPost from "./features/posts/edit-post/EditPost";
 import {Route, Routes} from 'react-router-dom';
 import useScrollToTop from "./hooks/useScrollToTop";
 import {PostSearchProvider} from "./context/PostSearchContext";
-import UsersList from "./features/users/UsersList";
-import UserPage from "./features/users/UserPage";
+import UsersList from "./features/users/user-list/UsersList";
+import UserPage from "./features/users/user-page/UserPage";
 import {UserSearchProvider} from "./context/UserSearchContext";
 
 function App() {

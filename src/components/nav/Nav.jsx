@@ -9,9 +9,9 @@ const Nav = () => {
     const {searchUser, setSearchUser, resetUserSearch} = useContext(UserSearchContext);
 
     const location = useLocation();
-
     const previousRoute = useRef(location.pathname);
 
+    // Reset search input when navigating to another section of the website
     useEffect(() => {
         if (previousRoute.current === '/' && location.pathname !== '/') {
             resetPostSearch();
