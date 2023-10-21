@@ -3,8 +3,9 @@ import {IoMdClose} from "react-icons/io";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {addNewPost} from './postsSlice';
+import styles from './styles/NewPost.module.css';
 
-const AddPost = () => {
+const NewPost = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -70,7 +71,7 @@ const AddPost = () => {
     return (
         <main className='new-post'>
             <h2>New Post</h2>
-            <form className='new-post-form' onSubmit={handleSubmit}>
+            <form className={styles[`new-post-form`]} onSubmit={handleSubmit}>
                 <label htmlFor='post-title'>Title:</label>
                 <input
                     id='post-title'
@@ -97,26 +98,26 @@ const AddPost = () => {
                 <label htmlFor='post-image'>Upload an image:</label>
                 <div>
                     <input
-                        className="default-file-input"
+                        className='default-file-input'
                         id='post-image'
                         type='file'
                         // Hide the default input
                         onChange={handleSetImage}
                     />
-                    <button className="custom-file-input" type="button"
+                    <button className='custom-file-input' type="button"
                             onClick={() => document.getElementById('post-image').click()}>
                         Choose File
                     </button>
                     <span>{fileName || 'No file chosen'}</span> {/* Displaying the name of the file */}
-                    {fileName && <button className="remove-file-btn" type="button" onClick={() => {
+                    {fileName && <button className='remove-file-btn' type="button" onClick={() => {
                         setImage(null);
                         setFileName('');
                     }}><IoMdClose/></button>}
                 </div>
-                <button className="submit-btn" type='submit'>Submit</button>
+                <button className='submit-btn' type='submit'>Submit</button>
             </form>
         </main>
     );
 };
 
-export default AddPost;
+export default NewPost;

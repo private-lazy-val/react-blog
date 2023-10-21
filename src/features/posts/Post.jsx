@@ -10,18 +10,18 @@ const Post = ({postId}) => {
     const post = useSelector(state => selectPostById(state, postId));
 
     return (
-        <article className='post'>
+        <article className={styles.post}>
             <Link to={`post/${post.id}`}>
                 <h2>{post.title}</h2>
             </Link>
-            <div className={styles.credits}>
-                <p className='post-date'>{post.date}</p>
+            <div className={styles.wrapper}>
+                <p className={styles[`post-date`]}>{post.date}</p>
                 <Link to={`user/${post.user_id}`}>
                     <PostAuthor userId={post.user_id}></PostAuthor>
                 </Link>
             </div>
-            <p className='post-body'>{truncateOnWord(post.body, 80)}</p>
-            {post.image && <img className='post-image_preview' src={post.image} alt={post.title}/>}
+            <p className={styles[`post-body`]}>{truncateOnWord(post.body, 80)}</p>
+            {post.image && <img className={styles[`post-image_preview`]} src={post.image} alt={post.title}/>}
             <ReactionButtons post={post}/>
         </article>
     );

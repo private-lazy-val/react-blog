@@ -1,5 +1,5 @@
 import Home from './features/posts/Home';
-import AddPost from './features/posts/AddPost';
+import NewPost from './features/posts/NewPost';
 import PostPage from './features/posts/PostPage';
 import About from './components/about/About';
 import Missing from './components/missing/Missing';
@@ -24,7 +24,7 @@ function App() {
                     <Route index element={<Home/>}/>
 
                     <Route path='post'>
-                        <Route index element={<AddPost/>}/>
+                        <Route index element={<NewPost/>}/>
                         <Route path=':postId' element={<PostPage/>}/>
                     </Route>
 

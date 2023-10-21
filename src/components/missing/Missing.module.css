@@ -1,12 +1,4 @@
-.missing {
-    width: 100%;
-    flex-grow: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    background-color: var(--background);
-}
-
-.missing p {
+.missing-text {
     margin-top: 1rem;
 }
 

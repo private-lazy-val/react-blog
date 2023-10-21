@@ -2,9 +2,9 @@ import {useParams, Link} from "react-router-dom"; // useParams allows to access 
 import {useSelector} from "react-redux";
 import {selectPostById} from "./postsSlice";
 import ReactionButtons from './ReactionButtons';
-import styles from "./styles/Post.module.css";
 import PostAuthor from "./PostAuthor";
 import Missing from "../../components/missing/Missing";
+import styles from './styles/PostPage.module.css';
 
 const PostPage = () => {
     const {postId} = useParams();
@@ -21,24 +21,23 @@ const PostPage = () => {
 
     return (
         <main className='post-page'>
-            <article className='post'>
+            <article className={styles[`post_full-size`]}>
                 {<>
                     <h2>{post.title}</h2>
-                    <div className={styles.credits}>
-                        <p className='post-date'>{post.date}</p>
+                    <div className={styles[`wrapper_full-size`]}>
+                        <p className={styles[`post-date_full-size`]}>{post.date}</p>
                         <Link to={`/user/${post.user_id}`}>
                             <PostAuthor userId={post.user_id}></PostAuthor>
                         </Link>
                     </div>
-                    <p className='post-body'>{post.body}</p>
-                    {post.image && <img className='post-image_full-size' src={post.image} alt={post.title}/>}
+                    <p className={styles[`post-body_full-size`]}>{post.body}</p>
+                    {post.image && <img className={styles[`post-image_full-size`]} src={post.image} alt={post.title}/>}
 
                     <ReactionButtons post={post}/>
-                    <div className='options-btn'>
-                        <Link to={`/edit/${post.id}`}>
-                            <button className='edit-btn'>Edit Post</button>
-                        </Link>
-                    </div>
+                    <Link to={`/edit/${post.id}`}>
+                        <button className='edit-btn'>Edit Post</button>
+                    </Link>
+
                 </>
                 }
             </article>

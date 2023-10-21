@@ -3,10 +3,10 @@ import styles from './Missing.module.css';
 
 const Missing = () => {
     return (
-        <main className={styles.missing}>
+        <main className='missing'>
             <h2>Page Not Found</h2>
-            <p>Well, that's disappointing</p>
-            <p>
+            <p className={styles[`missing-text`]}>Well, that's disappointing</p>
+            <p className={styles[`missing-text`]}>
                 <Link className={styles['go-back']} to='/'>Visit Out Homepage</Link>
             </p>
         </main>
