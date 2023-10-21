@@ -7,22 +7,26 @@ const PostSearchContext = createContext({});
 
 export const PostSearchProvider = ({children}) => {
 
-    const [search, setSearch] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchPost, setSearchPost] = useState('');
+    const [searchPostResults, setSearchPostResults] = useState([]);
 
     const posts = useSelector(selectAllPosts);
 
     useEffect(() => {
         const filteredResults = posts.filter((post) =>
-            (post.body && post.body.toLowerCase().includes(search.toLowerCase()))
-            || (post.title && post.title.toLowerCase().includes(search.toLowerCase())));
+            (post.body && post.body.toLowerCase().includes(searchPost.toLowerCase()))
+            || (post.title && post.title.toLowerCase().includes(searchPost.toLowerCase())));
 
-        setSearchResults(filteredResults.reverse());
-    }, [posts, search]);
+        setSearchPostResults(filteredResults.reverse());
+    }, [posts, searchPost]);
 
+    // Reset search input when navigating to another section of the website
+    const resetPostSearch = () => {
+        setSearchPost('');
+    }
 
     return (
-        <PostSearchContext.Provider value={{search, setSearch, searchResults}}>
+        <PostSearchContext.Provider value={{searchPost, setSearchPost, searchPostResults, resetPostSearch}}>
             {children}
         </PostSearchContext.Provider>
         // DataProvider has some internal state.

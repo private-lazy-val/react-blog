@@ -3,10 +3,9 @@ import {selectPostsIsLoading, selectPostsHasError, selectPostError} from './post
 import {useSelector} from "react-redux";
 import {useContext, useEffect, useState} from "react";
 import PostSearchContext from "../../context/PostSearchContext";
-import styles from './styles/Home.module.css';
 
 const Home = () => {
-    const {searchResults} = useContext(PostSearchContext);
+    const {searchPostResults} = useContext(PostSearchContext);
     const postsAreLoading = useSelector(selectPostsIsLoading);
     const postsHaveError = useSelector(selectPostsHasError);
     const error = useSelector(selectPostError);
@@ -21,13 +20,13 @@ const Home = () => {
 
     return (
         <main className='home'>
-            {postsAreLoading && <p className={styles[`status-msg`]}>Loading posts...</p>}
+            {postsAreLoading && <p className='status-msg'>Loading posts...</p>}
 
-            {postsHaveError && <p className={styles[`status-msg_err`]}>{error}</p>}
+            {postsHaveError && <p className='status-msg status-msg_err'>{error}</p>}
 
-            {!postsAreLoading && !postsHaveError && hasAttemptedFetch && (searchResults.length ?
-                <Feed posts={searchResults}/> :
-                <p className={styles[`status-msg`]}>No posts to display.</p>)}
+            {!postsAreLoading && !postsHaveError && hasAttemptedFetch && (searchPostResults.length ?
+                <Feed posts={searchPostResults}/> :
+                <p className='status-msg'>No posts to display.</p>)}
         </main>
     );
 };

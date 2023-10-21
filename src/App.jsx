@@ -10,12 +10,14 @@ import useScrollToTop from "./hooks/useScrollToTop";
 import {PostSearchProvider} from "./context/PostSearchContext";
 import UsersList from "./features/users/UsersList";
 import UserPage from "./features/users/UserPage";
+import {UserSearchProvider} from "./context/UserSearchContext";
 
 function App() {
     useScrollToTop();
 
     return (
         <PostSearchProvider>
+            <UserSearchProvider>
             <Routes>
                 <Route path='/' element={
                     <Layout/>
@@ -45,6 +47,7 @@ function App() {
                     <Route path='*' element={<Missing/>}/>
                 </Route>
             </Routes>
+            </UserSearchProvider>
         </PostSearchProvider>
     );
 }

@@ -1,15 +1,18 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {selectAllUsers} from "./usersSlice";
 import styles from './styles/UsersList.module.css';
+import {useContext} from "react";
+import UserSearchContext from "../../context/UserSearchContext";
 
 const UsersList = () => {
-    const users = useSelector(selectAllUsers);
-    const renderedUsers = users.map(user => (
-        <li key={user.id}>
-            <Link to={`/user/${user.id}`}>{user.name}</Link>
-        </li>
-    ))
+    const {searchUserResults} = useContext(UserSearchContext);
+
+    const renderedUsers =
+        searchUserResults.length ?
+        searchUserResults.map(user => (
+            <li key={user.id}>
+                <Link to={`/user/${user.id}`}>{user.name}</Link>
+            </li>))
+        : <p className='status-msg'>No users to display.</p>
 
     return (
         <main className='users'>

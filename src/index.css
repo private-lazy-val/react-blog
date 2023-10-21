@@ -155,3 +155,12 @@ main {
 .edit-btn:focus {
     background-color: var(--dark-headline);
 }
+
+/* || STATUS MESSAGES */
+.status-msg {
+    margin-top: 2rem;
+}
+
+.status-msg_err {
+    color: var(--error);
+}

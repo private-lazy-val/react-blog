@@ -1,28 +1,57 @@
 import {Link, useLocation} from 'react-router-dom';
-import {useContext} from "react";
+import {useContext, useEffect, useRef} from "react";
 import PostSearchContext from "../../context/PostSearchContext";
 import styles from './Nav.module.css';
+import UserSearchContext from "../../context/UserSearchContext";
 
 const Nav = () => {
-    const {search, setSearch} = useContext(PostSearchContext);
+    const {searchPost, setSearchPost, resetPostSearch} = useContext(PostSearchContext);
+    const {searchUser, setSearchUser, resetUserSearch} = useContext(UserSearchContext);
 
     const location = useLocation();
-    const showSearch = location.pathname === '/';
+
+    const previousRoute = useRef(location.pathname);
+
+    useEffect(() => {
+        if (previousRoute.current === '/' && location.pathname !== '/') {
+            resetPostSearch();
+        }
+        if (previousRoute.current === '/user' && location.pathname !== '/user') {
+            resetUserSearch();
+        }
+        previousRoute.current = location.pathname;
+    }, [location.pathname, resetUserSearch, resetPostSearch]);
+
+    const showPostSearch = location.pathname === '/';
+    const showUserSearch = location.pathname === '/user';
 
     return (
         <nav className={styles.nav}>
-            { showSearch && (
+            { showPostSearch && (
             <form className={styles.search} onSubmit={(e) => e.preventDefault()}>
-                <label htmlFor='search'>Search Posts</label>
+                <label htmlFor='post-search'>Search Posts</label>
                 <input
-                    id='search'
+                    id='post-search'
                     type='text'
                     placeholder='Search Posts'
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+                    value={searchPost}
+                    onChange={(e) => setSearchPost(e.target.value)}
                 />
             </form>
                 )}
+            { showUserSearch && (
+                <form className={styles.search} onSubmit={(e) => e.preventDefault()}>
+                    <label htmlFor='search'>Search User</label>
+                    <input
+                        id='user-search'
+                        type='text'
+                        placeholder='Search User'
+                        value={searchUser}
+                        onChange={(e) => setSearchUser(e.target.value)}
+                    />
+                </form>
+            )}
+
             <ul>
                 <li><Link to='/'>Home</Link></li>
                 <li><Link to='post'>Post</Link></li>
