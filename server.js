@@ -6,7 +6,11 @@ const port = process.env.PORT || 3000;
 
 // Custom route for the homepage
 server.get('/', (req, res) => {
-    res.send('<h1>Welcome to Pekingese Corner API</h1><p>Available routes: <a href="https://pekingese-blog-8ceaec0c8c78.herokuapp.com/posts">/posts</a></p>');
+    res.send('<h1>Welcome to Pekingese Corner API</h1>' +
+        '<p>Available routes: ' +
+        '<a href="https://pekingese-blog-8ceaec0c8c78.herokuapp.com/posts">/posts</a>' +
+        '<a href="https://pekingese-blog-8ceaec0c8c78.herokuapp.com/users">/users</a>' +
+        '</p>');
 });
 
 // Use middlewares and router
