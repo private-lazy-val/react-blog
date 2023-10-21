@@ -33,14 +33,14 @@ To get the application up and running, you need to execute two separate commands
 First, navigate to your project directory and run the following command to start the React application:
 
 ```bash
-npm start
+npm run dev
 ````
 
 ## Running the JSON Server locally
 This project uses `json-server` for a mock backend. Open another terminal instance, navigate to your project directory, and run the following command to start the JSON server:
 
 ```bash
-npx json-server -p 3500 -w data/db.json
+npm run server
 ```
 
 
