@@ -1,0 +1,12 @@
+.users-list {
+    margin-top: 1rem;
+    list-style: none;
+}
+
+.users-list a {
+    color: var(--dark-headline);
+}
+
+.users-list a:hover {
+    color: var(--accent);
+}

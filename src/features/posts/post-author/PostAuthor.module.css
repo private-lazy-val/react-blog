@@ -1,0 +1,13 @@
+.author {
+    font-style: italic;
+    font-size: 0.75rem;
+    color: var(--dark-headline);
+}
+
+.author:hover {
+    color: var(--light-headline);
+}
+
+.author:visited {
+    color: var(--dark-headline);
+}

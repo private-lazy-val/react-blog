@@ -1,0 +1,11 @@
+.missing-text {
+    margin-top: 1rem;
+}
+
+.go-back {
+    color: var(--accent);
+}
+
+.go-back:hover {
+    color: var(--secondary);
+}

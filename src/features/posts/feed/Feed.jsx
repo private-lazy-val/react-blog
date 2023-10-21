@@ -1,9 +1,9 @@
-import Post from './Post';
+import Post from '../post/Post';
 const Feed = ({posts}) => {
     return (
         <>
             {posts.map((post) => (
-                <Post key={post.id} post={post}/>
+                <Post key={post.id} postId={post.id}/>
             ))}
         </>
     );

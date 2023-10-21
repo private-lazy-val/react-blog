@@ -1,0 +1,12 @@
+.title {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.title:hover {
+    color: var(--secondary);
+}
+
+.about-text {
+    margin-top: 1rem;
+}

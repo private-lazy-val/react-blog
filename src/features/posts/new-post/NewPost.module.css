@@ -1,0 +1,31 @@
+.new-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post-form label {
+    margin-top: 1rem;
+}
+
+.new-post-form input[type='text'],
+.new-post-form textarea {
+    font-family: var(--ff-futura-ss);
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    outline: none;
+    border: 1px solid gray;
+}
+
+.new-post-form textarea {
+    height: 100px;
+}
+
+@media only screen and (min-width: 610px) {
+    .new-post-form textarea {
+        height: 300px;
+    }
+}
+

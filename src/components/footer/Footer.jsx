@@ -1,7 +1,9 @@
+import styles from './Footer.module.css';
+
 const Footer = () => {
     const today = new Date();
     return (
-        <footer className='footer'>
+        <footer className={styles.footer}>
             <p>Pekingese Corner &copy;{today.getFullYear()}</p>
         </footer>
     );
