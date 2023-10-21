@@ -14,15 +14,15 @@
 Pekingese Corner is a React-based open platform offering in-depth information on Pekingese dogs. The app incorporates Redux, React Router v6, Axios, custom hooks, and Context API.
 
 ## Branch Details
-- **Main Branch: Utilizes `Redux` for state management with the integration of AsyncThunk and Entity Adapter.**
-- **feature/context-api Branch: Uses `Context API` for state management.**
+- **Main Branch**: Utilizes `Redux` for state management with the integration of `AsyncThunk` and `Entity Adapter`.
+- **feature/context-api Branch**: Uses `Context API` for state management.
 
 ## Features
 - **Dynamic Routing using React Router v6**
 - **Data Fetching using Axios**
 - **Custom Hooks** (`useAxiosFetch`, `useWindowSize`, `useScrollToTop`)
 - **Router hooks and links for navigation**
-- **Context API for state management**
+- **Context API**
 
 ## Hosting
 The front-end of Pekingese Corner is hosted on `Vercel`. 
@@ -43,8 +43,8 @@ npm run dev
 
 ## Screenshots
 
-![Home page mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/5664a98f-df3d-417a-ab4a-0bc91d7bf9f6)
-![Post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/d586d879-0a6a-4fc7-a5f5-90a06e1afbda)
-![New post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/f5e4efd1-3aca-432e-83e6-5bf081e0c452)
-![Home page desktop](https://github.com/private-lazy-val/react-blog/assets/56920579/58dbf79d-d4ec-4a7a-9331-eb5cbeebdc1c)
+![Home page mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/e042f424-5c55-41ea-ace9-58b97d7ce568)
+![Post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/320981d6-3123-470c-8629-31668bbefcc2)
+![New post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/c769a398-1379-4fb6-bcfa-eae5f8522dc6)
+![Home page desktop](https://github.com/private-lazy-val/react-blog/assets/56920579/01f0466c-b031-418b-ad84-2423c509f7e3)
 
