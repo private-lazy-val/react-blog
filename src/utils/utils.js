@@ -29,3 +29,4 @@ export const handleSetImage = (e, setImage, setFileName) => {
         };
     }
 };
+

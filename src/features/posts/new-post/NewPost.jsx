@@ -1,61 +1,45 @@
-import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
-import {useDispatch} from "react-redux";
-import {useState} from "react";
-import {addNewPost} from '../postsSlice';
+import {useContext, useEffect} from "react";
 import styles from './NewPost.module.css';
 import {handleSetImage} from "../../../utils/utils";
+import PostFormContext from "../../../context/PostFormContext";
 
 const NewPost = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const {
+        handleSubmit,
+        title,
+        setTitle,
+        onTitleChanged,
+        setContent,
+        setUserName,
+        userName,
+        onUserNameChanged,
+        content,
+        image,
+        onContentChanged,
+        setImage,
+        setFileName,
+        fileName
+    } = useContext(PostFormContext);
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [userName, setUserName] = useState('');
-    const [image, setImage] = useState(null);
-    const [fileName, setFileName] = useState('');
-    const [isPending, setIsPending] = useState(false);
-
-    const onTitleChanged = e => setTitle(e.target.value);
-    const onContentChanged = e => setContent(e.target.value);
-    const onUserNameChanged = e => setUserName(e.target.value);
-
-    const canSave = [title, content, userName].every(Boolean) && isPending === false;
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (canSave) {
-            try {
-                setIsPending(true);
-                // When you dispatch an async thunk, it returns a promise that resolves into
-                // a SerializedError object if the thunk gets rejected, and resolves into the result of the payloadCreator function
-                // if the thunk is fulfilled.
-                // However, working with these outcomes directly could be somewhat verbose,
-                // which is where unwrapResult and thunkApi.unwrap come into play.
-                await dispatch(addNewPost({title, body: content, user_name: userName, image, file_name: fileName})).unwrap();
-
-                setTitle('');
-                setContent('');
-                setImage(null);
-                setFileName('');
-                setUserName('');
-                navigate('/');
-                // after submitting a new post, the navigate('/') function call will change the application's current route
-                // to the home page
-                // the hook is non user-initiated
-            } catch (err) {
-                console.log('Failed to save the post', err);
-            } finally {
-                setIsPending(false);
-            }
-        }
-    }
+    useEffect(() => {
+        setTitle('');
+        setUserName('');
+        setContent('');
+        setImage('');
+        setFileName('');
+    }, [setTitle, setUserName, setContent, setImage, setFileName]);
 
     return (
         <main className='new-post'>
             <h2>New Post</h2>
-            <form className={styles[`new-post-form`]} onSubmit={handleSubmit}>
+            <form className={styles[`new-post-form`]} onSubmit={(e) => handleSubmit(e, {
+                title,
+                body: content,
+                user_name: userName,
+                image,
+                file_name: fileName
+            })}>
                 <label htmlFor='post-title'>Title:</label>
                 <input
                     id='post-title'

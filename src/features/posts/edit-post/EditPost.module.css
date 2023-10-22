@@ -14,7 +14,7 @@
     min-height: 48px;
     font-size: 1rem;
     padding: 0.25rem;
-    border-radius: 0.25rem;
+    border-radius: var(--br-general);
     outline: none;
     border: 1px solid gray;
 }
