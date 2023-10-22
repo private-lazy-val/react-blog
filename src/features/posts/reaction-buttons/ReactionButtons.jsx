@@ -23,7 +23,7 @@ const ReactionButtons = ({post}) => {
                 className={styles['reaction-btn']}
                 onClick={() => dispatch(updateReaction({postId: post.id, reaction: name}))}
             >
-                {emoji} {post.reactions[name]}
+                <span>{emoji}</span><span className={styles.count}>{post.reactions[name]}</span>
             </button>
         )
     })

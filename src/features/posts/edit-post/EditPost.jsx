@@ -8,14 +8,14 @@ import {handleSetImage} from "../../../utils/postForm";
 import PostFormContext from "../../../context/PostFormContext";
 import Missing from "../../../components/missing/Missing";
 import PropTypes from "prop-types";
-import usePostIsLoading from "../../../hooks/usePostIsLoading";
+import useIsLoading from "../../../hooks/useIsLoading";
 
 const EditPost = ({openModal}) => {
 
     const {postId} = useParams();
     const post = useSelector((state) => selectPostById(state, Number(postId)));
 
-    const {postIsLoading} = usePostIsLoading(post);
+    const {postIsLoading} = useIsLoading(post);
 
     const {
         handleEdit,

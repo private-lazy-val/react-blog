@@ -1,13 +1,13 @@
 import Feed from '../feed/Feed';
-import {selectPostsIsLoading, selectPostsHasError, selectPostError} from '../postsSlice';
+import {selectPostsAreLoading, selectPostsHaveError, selectPostError} from '../postsSlice';
 import {useSelector} from "react-redux";
 import {useContext, useEffect, useState} from "react";
 import PostSearchContext from "../../../context/PostSearchContext";
 
 const Home = () => {
     const {searchPostResults} = useContext(PostSearchContext);
-    const postsAreLoading = useSelector(selectPostsIsLoading);
-    const postsHaveError = useSelector(selectPostsHasError);
+    const postsAreLoading = useSelector(selectPostsAreLoading);
+    const postsHaveError = useSelector(selectPostsHaveError);
     const error = useSelector(selectPostError);
 
     const [hasAttemptedFetch, setHasAttemptedFetch] = useState(false);
@@ -23,9 +23,7 @@ const Home = () => {
     return (
         <main className='home'>
             {postsAreLoading && <p className='status-msg'>Loading posts...</p>}
-
             {postsHaveError && <p className='status-msg status-msg_err'>{error}</p>}
-
             {!postsAreLoading && !postsHaveError && hasAttemptedFetch && (searchPostResults.length ?
                 <Feed posts={searchPostResults}/> :
                 <p className='status-msg'>No posts to display.</p>)}

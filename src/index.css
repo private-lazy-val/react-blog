@@ -161,7 +161,7 @@ main {
 
 /* || STATUS MESSAGES */
 .status-msg {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .status-msg_err {

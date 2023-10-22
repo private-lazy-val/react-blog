@@ -202,8 +202,8 @@ export const {
 //     state.posts.posts.find(post => post.id === postId);
 // export const selectAllPosts = (state) => state.posts.posts;
 
-export const selectPostsIsLoading = (state) => state.posts.isLoading;
-export const selectPostsHasError = (state) => state.posts.hasError;
+export const selectPostsAreLoading = (state) => state.posts.isLoading;
+export const selectPostsHaveError = (state) => state.posts.hasError;
 export const selectPostError = (state) => state.posts.error;
 export const selectPostsByUser = createSelector(
     // The component will re-render only if selectAllPosts or the anonymous func (user) changes

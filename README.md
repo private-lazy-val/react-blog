@@ -48,6 +48,7 @@ npm run server
 
 ![Home page mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/e042f424-5c55-41ea-ace9-58b97d7ce568)
 ![Post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/320981d6-3123-470c-8629-31668bbefcc2)
+![Confirm delete post modile](https://github.com/private-lazy-val/react-blog/assets/56920579/c520c90c-881a-4e78-9e18-e0cd968e58bd)
 ![New post mobile](https://github.com/private-lazy-val/react-blog/assets/56920579/c769a398-1379-4fb6-bcfa-eae5f8522dc6)
 ![Home page desktop](https://github.com/private-lazy-val/react-blog/assets/56920579/01f0466c-b031-418b-ad84-2423c509f7e3)
 

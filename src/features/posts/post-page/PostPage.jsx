@@ -6,7 +6,7 @@ import PostAuthor from "../post-author/PostAuthor";
 import Missing from "../../../components/missing/Missing";
 import styles from './PostPage.module.css';
 import PropTypes from "prop-types";
-import usePostIsLoading from "../../../hooks/usePostIsLoading";
+import useIsLoading from "../../../hooks/useIsLoading";
 
 const PostPage = ({openModal}) => {
     const {postId} = useParams();
@@ -14,7 +14,7 @@ const PostPage = ({openModal}) => {
     // This id is then used to find the relevant post from the posts array
     const post = useSelector((state) => selectPostById(state, Number(postId)));
 
-    const { postIsLoading }  = usePostIsLoading(post);
+    const { postIsLoading }  = useIsLoading(post);
 
     return (
         <main className='post-page'>
