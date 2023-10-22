@@ -19,6 +19,7 @@ import {CSSTransition} from "react-transition-group";
 
 import transitions from "./features/modals/modal/ModalTransitions.module.css";
 import {PostFormProvider} from "./context/PostFormContext";
+import ViewImage from "./features/modals/view-image/ViewImage";
 
 function App() {
     useScrollToTop();
@@ -26,8 +27,9 @@ function App() {
     const {
         isModalOpen,
         modalType,
-        closeConfirmDeleteModal,
-        openConfirmDeleteModal
+        openConfirmDeleteModal,
+        openViewImageModal,
+        closeModal
     } = useModal();
 
     // Used in CSSTransition
@@ -38,35 +40,35 @@ function App() {
             <PostSearchProvider>
                 <UserSearchProvider>
                     <PostFormProvider>
-                    <Routes>
-                        <Route path='/' element={
-                            <Layout/>
-                        }>
-                            {/*indexed route will be rendered when the parent path is exactly matched*/}
-                            <Route index element={<Home/>}/>
+                        <Routes>
+                            <Route path='/' element={
+                                <Layout/>
+                            }>
+                                {/*indexed route will be rendered when the parent path is exactly matched*/}
+                                <Route index element={<Home/>}/>
 
                                 <Route path='post'>
                                     <Route index element={<NewPost/>}/>
-                                    <Route path=':postId' element={<PostPage/>}/>
+                                    <Route path=':postId' element={<PostPage openModal={openViewImageModal}/>}/>
                                 </Route>
 
                                 <Route path='edit/:postId'>
                                     <Route index element={<EditPost openModal={openConfirmDeleteModal}/>}/>
                                 </Route>
 
-                            <Route path="user">
-                                <Route index element={<UsersList/>}></Route>
-                                <Route path=":userId" element={<UserPage/>}></Route>
+                                <Route path="user">
+                                    <Route index element={<UsersList/>}></Route>
+                                    <Route path=":userId" element={<UserPage/>}></Route>
+                                </Route>
+
+                                <Route path='about' element={<About/>}/>
+
+                                {/*Catch all*/}
+                                {/*With 'replace' the current history entry is replaced by the new one, */}
+                                {/*so the back button will take you to the page before the last one*/}
+                                <Route path='*' element={<Missing/>}/>
                             </Route>
-
-                            <Route path='about' element={<About/>}/>
-
-                            {/*Catch all*/}
-                            {/*With 'replace' the current history entry is replaced by the new one, */}
-                            {/*so the back button will take you to the page before the last one*/}
-                            <Route path='*' element={<Missing/>}/>
-                        </Route>
-                    </Routes>
+                        </Routes>
                     </PostFormProvider>
                 </UserSearchProvider>
             </PostSearchProvider>
@@ -78,10 +80,22 @@ function App() {
                 classNames={{...transitions}}
                 unmountOnExit
             >
-                <Modal ref={nodeRef} closeModal={closeConfirmDeleteModal}>
+                <Modal ref={nodeRef} closeModal={closeModal}>
                     <PostFormProvider>
                         <ConfirmDelete title='Are you fur-real?'/>
                     </PostFormProvider>
+                </Modal>
+            </CSSTransition>
+
+            <CSSTransition
+                in={isModalOpen && modalType === 'view-image'}
+                nodeRef={nodeRef}
+                timeout={600}
+                classNames={{...transitions}}
+                unmountOnExit
+            >
+                <Modal ref={nodeRef} closeModal={closeModal}>
+                    <ViewImage/>
                 </Modal>
             </CSSTransition>
         </>

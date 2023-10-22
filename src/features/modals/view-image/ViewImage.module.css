@@ -1,0 +1,10 @@
+.img {
+    width: 70vw;
+    overflow: hidden;
+}
+
+.caption {
+    position: absolute;
+    color: var(--background);
+    font-size: 16px;
+}

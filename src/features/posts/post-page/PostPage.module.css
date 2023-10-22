@@ -35,4 +35,5 @@
 .post-image_full-size {
     width: 100%;
     max-width: 800px;
+    cursor: zoom-in;
 }

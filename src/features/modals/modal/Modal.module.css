@@ -5,9 +5,7 @@
     transform: translate(-50%, -50%);
     border-radius: var(--br-button);
     background: var(--background);
-    border: 1px solid var(--accent);
     z-index: 2;
-    padding: 30px 40px 20px 40px;
 }
 
 .exit-button {
@@ -20,5 +18,5 @@
 }
 
 .exit-button:hover {
-    color: var(--dark-headline);
+    color: var(--accent-hover);
 }
