@@ -46,7 +46,7 @@ body {
     display: flex;
     font-family: var(--ff-futura-ss);
     color: var(--dark-headline);
-    background-color: var(--background);
+    background-color: var(--main);
 }
 
 body a {
