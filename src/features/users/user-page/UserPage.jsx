@@ -7,7 +7,6 @@ import Missing from "../../../components/missing/Missing";
 
 const UserPage = () => {
     const { userId } = useParams();
-
     const user = useSelector(state => selectUserById(state, userId));
 
     const postsByUser = useSelector(state => selectPostsByUser(state, userId));

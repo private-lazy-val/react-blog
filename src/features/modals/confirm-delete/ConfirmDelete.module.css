@@ -1,0 +1,14 @@
+.title {
+    margin-bottom: 1rem;
+}
+
+.img {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.confirm-btn {
+    display: flex;
+    margin-inline: auto;
+}

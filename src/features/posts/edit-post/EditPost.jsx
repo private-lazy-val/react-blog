@@ -1,37 +1,44 @@
-import {useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
 import {IoMdClose} from "react-icons/io";
-import {deletePost, editPost, selectPostById} from "../postsSlice";
-import {useSelector, useDispatch} from "react-redux";
-import Missing from "../../../components/missing/Missing";
+import {selectPostById} from "../postsSlice";
+import {useSelector} from "react-redux";
 import styles from "./EditPost.module.css";
-import {handleSetImage} from "../../../utils/utils";
+import {handleSetImage} from "../../../utils/postForm";
+import PostFormContext from "../../../context/PostFormContext";
+import Missing from "../../../components/missing/Missing";
+import PropTypes from "prop-types";
 
-const EditPost = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+const EditPost =({openModal}) => {
 
     const {postId} = useParams();
-
     const post = useSelector((state) => selectPostById(state, Number(postId)));
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [image, setImage] = useState(null);
-    const [fileName, setFileName] = useState('');
-
-    const [isPending, setIsPending] = useState(false);
+    const {
+        handleEdit,
+        title,
+        setTitle,
+        onTitleChanged,
+        content,
+        setContent,
+        onContentChanged,
+        image,
+        setImage,
+        setUserName,
+        setFileName,
+        fileName
+    } = useContext(PostFormContext);
 
     useEffect(() => {
         // Check if post exists
         if (post) {
             setTitle(post.title);
             setContent(post.body);
+            setUserName(post.user_name);
             setImage(post?.image);
             setFileName(post?.file_name);
         }
-    }, [post]);
+    }, [post, setTitle, setContent, setImage, setFileName, setUserName]);
 
     if (!post) {
         return (
@@ -39,59 +46,19 @@ const EditPost = () => {
         )
     }
 
-    const onTitleChanged = e => setTitle(e.target.value);
-    const onContentChanged = e => setContent(e.target.value);
-
-    const canSave = [title, content, post.user_name].every(Boolean) && isPending === false;
-
-    const handleEdit = async () => {
-        if (canSave) {
-            try {
-                setIsPending(true);
-                await dispatch(editPost({
-                    id: post.id,
-                    title,
-                    body: content,
-                    user_id: post.user_id,
-                    user_name: post.user_name,
-                    image,
-                    file_name: fileName,
-                    reactions: post.reactions
-                })).unwrap();
-                setTitle('');
-                setContent('');
-                setImage(null);
-                setFileName('');
-                navigate(`/post/${post.id}`);
-            } catch (err) {
-                console.error('Failed to save the post', err);
-            } finally {
-                setIsPending(false);
-            }
-        }
-    }
-
-    const handleDelete = async () => {
-        try {
-            setIsPending(true);
-            await dispatch(deletePost({id: post.id, user_id: post.user_id})).unwrap();
-
-            setTitle('');
-            setContent('');
-            setImage(null);
-            setFileName('');
-            navigate('/');
-        } catch (err) {
-            console.error('Failed to delete the post', err);
-        } finally {
-            setIsPending(false);
-        }
-    }
-
     return (
         <main className='edit-post'>
             <h2>Edit Post</h2>
-            <form className={styles[`new-post-form`]} onSubmit={(e) => e.preventDefault()}>
+            <form className={styles[`new-post-form`]} onSubmit={(e) => handleEdit(e, {
+                id: post.id,
+                title,
+                body: content,
+                user_id: post.user_id,
+                user_name: post.user_name,
+                image,
+                file_name: fileName,
+                reactions: post.reactions
+            })}>
                 <label htmlFor='post-title'>Title:</label>
                 <input
                     id='post-title'
@@ -135,17 +102,21 @@ const EditPost = () => {
                             setFileName('');
                         }}><IoMdClose/></button>}
                     </div>
-                    <button className='delete-btn' type='button' onClick={() => handleDelete(post.id)}>
+                    <button className='delete-btn' type='button' onClick={() => openModal()}>
                         Delete Post
                     </button>
                 </div>
 
-                <button className='submit-btn' type='submit' onClick={() => handleEdit(post.id)}>
+                <button className='submit-btn' type='submit'>
                     Submit
                 </button>
             </form>
         </main>
     );
+};
+
+EditPost.propTypes = {
+    posts: PropTypes.func,
 };
 
 export default EditPost;

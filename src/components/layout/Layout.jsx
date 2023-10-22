@@ -7,7 +7,7 @@ import styles from './Layout.module.css';
 const Layout = () => {
     return (
         <div className={styles.app}>
-            <Header title='Pekingese Corner &#128054;'/>
+            <Header/>
             <Nav/>
             <Outlet/>
             <Footer/>

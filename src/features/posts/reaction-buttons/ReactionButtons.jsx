@@ -1,6 +1,8 @@
 import {useDispatch} from "react-redux";
 import {updateReaction} from "../postsSlice";
 import styles from './ReactionButtons.module.css';
+import PropTypes from "prop-types";
+import postPropTypes from '../../../utils/propTypes';
 
 const reactionEmoji = {
     thumbsUp: '👍',
@@ -31,6 +33,11 @@ const ReactionButtons = ({post}) => {
             {reactionButtons}
         </div>
     );
+};
+
+
+ReactionButtons.propTypes = {
+    post: postPropTypes.isRequired,
 };
 
 export default ReactionButtons;

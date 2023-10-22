@@ -31,6 +31,10 @@
     --accent: #f582ae;
     --accent-hover: #F47BA9;
     --error: #931621;
+
+    /* BORDER RADIUS */
+    --br-button: .5rem;
+    --br-general: .25rem;
 }
 
 html {
@@ -94,9 +98,8 @@ main {
 .delete-btn,
 .edit-btn {
     margin-top: 1rem;
-    height: 48px;
-    max-width: 300px;
-    border-radius: 10px;
+    max-width: fit-content;
+    border-radius: var(--br-button);
     padding: 0.5rem;
     font-size: 1rem;
 }
