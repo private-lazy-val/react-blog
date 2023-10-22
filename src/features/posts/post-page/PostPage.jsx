@@ -10,7 +10,6 @@ const PostPage = () => {
     const {postId} = useParams();
     // id is de-structured directly from the url returned by useParams().
     // This id is then used to find the relevant post from the posts array
-
     const post = useSelector((state) => selectPostById(state, Number(postId)));
 
     if (!post) {

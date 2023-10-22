@@ -1,7 +1,7 @@
 import {IoMdClose} from "react-icons/io";
 import {useContext, useEffect} from "react";
 import styles from './NewPost.module.css';
-import {handleSetImage} from "../../../utils/utils";
+import {handleSetImage} from "../../../utils/postForm";
 import PostFormContext from "../../../context/PostFormContext";
 
 const NewPost = () => {

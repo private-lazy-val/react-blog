@@ -4,7 +4,8 @@ import {selectPostById} from "../postsSlice";
 import ReactionButtons from "../reaction-buttons/ReactionButtons";
 import PostAuthor from "../post-author/PostAuthor";
 import styles from './Post.module.css';
-import {truncateOnWord} from "../../../utils/utils";
+import {truncateOnWord} from "../../../utils/truncateOnWord";
+import PropTypes from "prop-types";
 
 const Post = ({postId}) => {
     const post = useSelector(state => selectPostById(state, postId));
@@ -27,5 +28,9 @@ const Post = ({postId}) => {
     );
 };
 
+
+Post.propTypes = {
+    postId: PropTypes.number.isRequired,
+};
 
 export default Post;

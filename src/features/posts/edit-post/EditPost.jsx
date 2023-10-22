@@ -4,9 +4,10 @@ import {IoMdClose} from "react-icons/io";
 import {selectPostById} from "../postsSlice";
 import {useSelector} from "react-redux";
 import styles from "./EditPost.module.css";
-import {handleSetImage} from "../../../utils/utils";
+import {handleSetImage} from "../../../utils/postForm";
 import PostFormContext from "../../../context/PostFormContext";
 import Missing from "../../../components/missing/Missing";
+import PropTypes from "prop-types";
 
 const EditPost =({openModal}) => {
 
@@ -112,6 +113,10 @@ const EditPost =({openModal}) => {
             </form>
         </main>
     );
+};
+
+EditPost.propTypes = {
+    posts: PropTypes.func,
 };
 
 export default EditPost;
