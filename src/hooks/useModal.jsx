@@ -1,8 +1,8 @@
 import {useCallback} from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import {
-    openModal,
-    closeModal,
+    showModal,
+    hideModal,
     setModalType
 } from '../features/modals/modalsSlice';
 
@@ -12,21 +12,27 @@ const useModal = () => {
     const isModalOpen = useSelector(state => state.modal.isOpen);
     const modalType = useSelector(state => state.modal.modalType);
 
-    const closeConfirmDeleteModal = useCallback(() => {
-        dispatch(closeModal());
-        dispatch(setModalType(null));
+    const openConfirmDeleteModal = useCallback(() => {
+        dispatch(showModal());
+        dispatch(setModalType('confirm-delete'));
     }, [dispatch]);
 
-    const openConfirmDeleteModal = useCallback(() => {
-        dispatch(openModal());
-        dispatch(setModalType('confirm-delete'));
+    const openViewImageModal = useCallback(() => {
+        dispatch(showModal());
+        dispatch(setModalType('view-image'));
+    }, [dispatch]);
+
+    const closeModal = useCallback(() => {
+        dispatch(hideModal());
+        dispatch(setModalType(null));
     }, [dispatch]);
 
     return {
         isModalOpen,
         modalType,
-        closeConfirmDeleteModal,
-        openConfirmDeleteModal
+        openConfirmDeleteModal,
+        openViewImageModal,
+        closeModal
     };
 };
 

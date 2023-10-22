@@ -18,13 +18,13 @@ const ConfirmDelete = ({title}) => {
     } = useContext(PostFormContext);
 
     return (
-        <>
+        <div className={styles.wrapper}>
             <h2 className={styles.title}>{title}</h2>
             <img className={styles.img} src={pekingeseImage} alt='Cute Pekingese'></img>
             <button className={`${styles[`confirm-btn`]} delete-btn`} type='button' onClick={() => handleDelete({id: post.id, user_id: post.user_id})}>
                 Confirm Delete
             </button>
-        </>
+        </div>
     )
 };
 

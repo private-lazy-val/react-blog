@@ -6,7 +6,12 @@ const USERS_URL = api.getUri() + '/users';
 
 const usersAdapter = createEntityAdapter();
 
-const initialState = usersAdapter.getInitialState();
+const initialState = usersAdapter.getInitialState({
+        isLoading: false,
+        hasError: false,
+        error: null
+    }
+)
 
 export const fetchUsers = createAsyncThunk(
     'users/fetchUsers',
@@ -36,7 +41,7 @@ export const deleteUser = createAsyncThunk(
     async (userId) => {
         const response = await axios.delete(`${USERS_URL}/${userId}`);
         if (response.data && response.status === 200) {
-            return { id: userId };
+            return {id: userId};
         } else {
             throw new Error('Failed to delete user');
         }
@@ -49,11 +54,20 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
-            .addCase(
-                fetchUsers.fulfilled, (state, action) => {
-                    usersAdapter.setAll(state, action.payload);
-                }
-            )
+            .addCase(fetchUsers.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(fetchUsers.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.hasError = false;
+                usersAdapter.setAll(state, action.payload);
+            })
+            .addCase(fetchUsers.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+                state.error = action.error.message;
+            })
             .addCase(
                 addNewUser.fulfilled, (state, action) => {
                     usersAdapter.addOne(state, action.payload);
@@ -80,9 +94,9 @@ export const {
     selectById: selectUserById
 } = usersAdapter.getSelectors(state => state.users);
 
-// without adapter
-// export const selectAllUsers = (state) => state.users;
-// export const selectUserById = (state, userId) => state.users.find(user => user.id === userId);
-
 export const selectUserByName = (state, userName) =>
     selectAllUsers(state).find(user => user.name === userName);
+
+export const selectUserAreLoading = (state) => state.posts.isLoading;
+export const selectUsersHaveError = (state) => state.posts.hasError;
+export const selectUserError = (state) => state.posts.error;

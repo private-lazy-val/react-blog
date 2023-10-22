@@ -22,7 +22,8 @@ const Post = ({postId}) => {
                 </Link>
             </div>
             <p className={styles[`post-body`]}>{truncateOnWord(post.body, 80)}</p>
-            {post.image && <img className={styles[`post-image_preview`]} src={post.image} alt={post.title}/>}
+            {post.image &&
+                <img className={styles[`post-image_preview`]} src={post.image} alt={post.title}/>}
             <ReactionButtons post={post}/>
         </article>
     );
