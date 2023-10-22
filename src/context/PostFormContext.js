@@ -12,7 +12,7 @@ export const PostFormProvider = ({children}) => {
     const dispatch = useDispatch();
 
     const {
-        closeConfirmDeleteModal
+        closeModal
     } = useModal();
 
     const [title, setTitle] = useState('');
@@ -73,7 +73,7 @@ export const PostFormProvider = ({children}) => {
         try {
             setIsPending(true);
             await dispatch(deletePost(postData)).unwrap();
-            closeConfirmDeleteModal();
+            closeModal();
             navigate('/');
         } catch (err) {
             console.error('Failed to delete the post', err);
