@@ -11,7 +11,8 @@
 - [Screenshots](#screenshots)
 
 ## About
-Pekingese Corner is a React-based open platform offering in-depth information on Pekingese dogs. The app incorporates Redux, React Router v6, Axios, custom hooks, and Context API.
+Pekingese Corner is a React-based open platform offering in-depth information on Pekingese dogs. 
+<br>The app incorporates Redux, React Router v6, Axios, React portals, cssTransition, custom hooks, Context API, and more.
 
 ## Branch Details
 - **Main Branch**: Utilizes `Redux` for state management with the integration of `AsyncThunk` and `Entity Adapter`.
