@@ -97,6 +97,6 @@ export const {
 export const selectUserByName = (state, userName) =>
     selectAllUsers(state).find(user => user.name === userName);
 
-export const selectUserAreLoading = (state) => state.posts.isLoading;
-export const selectUsersHaveError = (state) => state.posts.hasError;
-export const selectUserError = (state) => state.posts.error;
+export const selectUsersAreLoading = (state) => state.users.isLoading;
+export const selectUsersHaveError = (state) => state.users.hasError;
+export const selectUserError = (state) => state.users.error;
