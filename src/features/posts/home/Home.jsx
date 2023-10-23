@@ -6,27 +6,43 @@ import PostSearchContext from "../../../context/PostSearchContext";
 
 const Home = () => {
     const {searchPostResults} = useContext(PostSearchContext);
-    const postsAreLoading = useSelector(selectPostsAreLoading);
-    const postsHaveError = useSelector(selectPostsHaveError);
+    const isLoading = useSelector(selectPostsAreLoading);
+    const hasError = useSelector(selectPostsHaveError);
     const error = useSelector(selectPostError);
 
     const [hasAttemptedFetch, setHasAttemptedFetch] = useState(false);
 
-    // By combining the states postsAreLoading and hasAttemptedFetch,
+    // By combining the states isLoading and hasAttemptedFetch,
     // the code is aiming to determine if the fetch attempt has completed (whether successfully or with an error).
     useEffect(() => {
-        if (!postsAreLoading && !hasAttemptedFetch) {
+        if (!isLoading && !hasAttemptedFetch) {
             setHasAttemptedFetch(true);
         }
-    }, [postsAreLoading, hasAttemptedFetch]);
+    }, [isLoading, hasAttemptedFetch]);
+
+    const renderedPosts = (
+        searchPostResults.length ?
+            <Feed posts={searchPostResults}/> :
+            <p className='status-msg'>No posts to display.</p>
+    );
+
+    let content;
+    if (isLoading) {
+        content = <p className='status-msg'>Loading posts...</p>
+    } else if (hasError) {
+        content = <p className='status-msg status-msg_err'>{error}</p>
+    } else if (hasAttemptedFetch) {
+        content = renderedPosts;
+    }
 
     return (
         <main className='home'>
-            {postsAreLoading && <p className='status-msg'>Loading posts...</p>}
-            {postsHaveError && <p className='status-msg status-msg_err'>{error}</p>}
-            {!postsAreLoading && !postsHaveError && hasAttemptedFetch && (searchPostResults.length ?
-                <Feed posts={searchPostResults}/> :
-                <p className='status-msg'>No posts to display.</p>)}
+            {/*{isLoading && <p className='status-msg'>Loading posts...</p>}*/}
+            {/*{hasError && <p className='status-msg status-msg_err'>{error}</p>}*/}
+            {/*{!isLoading && !hasError && hasAttemptedFetch && (searchPostResults.length ?*/}
+            {/*    <Feed posts={searchPostResults}/> :*/}
+            {/*    <p className='status-msg'>No posts to display.</p>)}*/}
+            {content}
         </main>
     );
 };

@@ -1,25 +1,22 @@
-import {selectUserById} from '../usersSlice';
+import {selectUserById, selectUsersAreLoading} from '../usersSlice';
 import {selectPostsByUser} from '../../posts/postsSlice';
-import {Link, useParams} from 'react-router-dom';
+import {Link, Navigate, useParams} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import styles from './UserPage.module.css';
-import Missing from "../../../components/missing/Missing";
-import useIsLoading from "../../../hooks/useIsLoading";
+import React from "react";
 
 const UserPage = () => {
-    const { userId } = useParams();
+    const {userId} = useParams();
 
     const user = useSelector(state => selectUserById(state, userId));
     const postsByUser = useSelector(state => selectPostsByUser(state, userId));
-
-    const { isLoading } = useIsLoading(user);
+    const isLoading = useSelector(selectUsersAreLoading);
 
     let content;
-
     if (isLoading) {
         content = <p className='status-msg'>Loading posts...</p>;
     } else if (!user) {
-        content = <Missing/>;
+        return <Navigate to="/not-found" replace />;
     } else {
         content = (
             <>

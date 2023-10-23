@@ -57,7 +57,7 @@ const Nav = () => {
                 <li><Link to='post'>Post</Link></li>
                 <li><Link to="user">Users</Link></li>
                 <li><Link to='about'>About</Link></li>
-                {/*The Link component renders an anchor (<a>) element, making it accessible by default*/}
+                {/*The Link component renders an anchor (<a>) and it doesn't cause re-render*/}
                 {/*the component is user-initiated*/}
             </ul>
         </nav>

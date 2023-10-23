@@ -21,3 +21,6 @@ export const ModalSlice = createSlice({
 
 export default ModalSlice.reducer;
 export const {showModal, hideModal, setModalType} = ModalSlice.actions;
+
+export const selectIsModalOpen = state => state.modal.isOpen;
+export const selectModalType = state => state.modal.modalType;

@@ -3,12 +3,12 @@ import styles from './UsersList.module.css';
 import {useContext} from "react";
 import UserSearchContext from "../../../context/UserSearchContext";
 import {useSelector} from "react-redux";
-import {selectUserAreLoading, selectUserError, selectUsersHaveError} from "../usersSlice";
+import {selectUsersAreLoading, selectUserError, selectUsersHaveError} from "../usersSlice";
 
 const UsersList = () => {
     const {searchUserResults} = useContext(UserSearchContext);
-    const usersAreLoading = useSelector(selectUserAreLoading);
-    const usersHaveError = useSelector(selectUsersHaveError);
+    const isLoading = useSelector(selectUsersAreLoading);
+    const hasError = useSelector(selectUsersHaveError);
     const error = useSelector(selectUserError);
 
     const renderedUsers =
@@ -17,18 +17,25 @@ const UsersList = () => {
                 <li key={user.id}>
                     <Link to={`/user/${user.id}`}>{user.name}</Link>
                 </li>))
-            : <p className='status-msg'>No users to display.</p>
+            : <li className='status-msg'>No users to display.</li>
+
+    let content;
+    if (isLoading) {
+        content = <p className='status-msg'>Loading users...</p>;
+    } else if (hasError) {
+        content = <p className='status-msg status-msg_err'>{error}</p>;
+    } else {
+        content = (
+            <>
+                <h2>Users</h2>
+                <ul className={styles['users-list']}>{renderedUsers}</ul>
+            </>
+        )
+    }
 
     return (
         <main className='users'>
-            {usersAreLoading && <p className='status-msg'>Loading posts...</p>}
-            {usersHaveError && <p className='status-msg status-msg_err'>{error}</p>}
-            {!usersAreLoading && !usersHaveError &&
-                <>
-                    <h2>Users</h2>
-                    <ul className={styles['users-list']}>{renderedUsers}</ul>
-                </>
-            }
+            {content}
         </main>
     )
 }

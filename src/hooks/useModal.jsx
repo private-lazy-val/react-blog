@@ -1,5 +1,5 @@
 import {useCallback} from "react";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {
     showModal,
     hideModal,
@@ -8,9 +8,6 @@ import {
 
 const useModal = () => {
     const dispatch = useDispatch();
-
-    const isModalOpen = useSelector(state => state.modal.isOpen);
-    const modalType = useSelector(state => state.modal.modalType);
 
     const openConfirmDeleteModal = useCallback(() => {
         dispatch(showModal());
@@ -28,8 +25,6 @@ const useModal = () => {
     }, [dispatch]);
 
     return {
-        isModalOpen,
-        modalType,
         openConfirmDeleteModal,
         openViewImageModal,
         closeModal
