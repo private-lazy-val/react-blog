@@ -42,9 +42,7 @@ function App() {
                 <UserSearchProvider>
                     <PostFormProvider>
                         <Routes>
-                            <Route path='/' element={
-                                <Layout/>
-                            }>
+                            <Route path='/' element={<Layout/>}>
                                 {/*indexed route will be rendered when the parent path is exactly matched*/}
                                 <Route index element={<Home/>}/>
 

@@ -37,11 +37,6 @@ const Home = () => {
 
     return (
         <main className='home'>
-            {/*{isLoading && <p className='status-msg'>Loading posts...</p>}*/}
-            {/*{hasError && <p className='status-msg status-msg_err'>{error}</p>}*/}
-            {/*{!isLoading && !hasError && hasAttemptedFetch && (searchPostResults.length ?*/}
-            {/*    <Feed posts={searchPostResults}/> :*/}
-            {/*    <p className='status-msg'>No posts to display.</p>)}*/}
             {content}
         </main>
     );
