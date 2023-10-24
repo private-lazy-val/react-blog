@@ -11,7 +11,7 @@ import UserPage from "./features/users/user-page/UserPage";
 import Modal from "./features/modals/modal/Modal";
 import useScrollToTop from "./hooks/useScrollToTop";
 import useModal from "./hooks/useModal";
-import { selectIsModalOpen, selectModalType } from '../src/features/modals/modalsSlice';
+import { selectIsModalOpen, selectModalType } from './features/modals/modalsSlice';
 import {Route, Routes} from 'react-router-dom';
 import {PostSearchProvider} from "./context/PostSearchContext";
 import {UserSearchProvider} from "./context/UserSearchContext";
@@ -42,9 +42,7 @@ function App() {
                 <UserSearchProvider>
                     <PostFormProvider>
                         <Routes>
-                            <Route path='/' element={
-                                <Layout/>
-                            }>
+                            <Route path='/' element={<Layout/>}>
                                 {/*indexed route will be rendered when the parent path is exactly matched*/}
                                 <Route index element={<Home/>}/>
 

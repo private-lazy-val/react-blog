@@ -64,6 +64,11 @@
     left: -99999px;
 }
 
+/*Active nav section*/
+.active {
+    background-color: var(--secondary);
+}
+
 @media only screen and (min-width: 610px) {
     .nav {
         flex-direction: row;
