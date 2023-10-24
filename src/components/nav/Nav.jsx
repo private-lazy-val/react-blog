@@ -35,6 +35,7 @@ const Nav = () => {
             {showUserSearch && <UsersFilter/>}
 
             <ul>
+                {/*NavLink has an 'active' class applied to it*/}
                 <li><NavLink to='/' className={setActive}>Home</NavLink></li>
                 <li><NavLink to='post' className={setActive}>Post</NavLink></li>
                 <li><NavLink to="user" className={setActive}>Users</NavLink></li>
