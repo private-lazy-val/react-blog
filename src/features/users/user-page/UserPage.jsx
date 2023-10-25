@@ -6,8 +6,8 @@ import styles from './UserPage.module.css';
 import React from "react";
 
 const UserPage = () => {
-    const {userId} = useParams();
 
+    const {userId} = useParams();
     const user = useSelector(state => selectUserById(state, userId));
     const postsByUser = useSelector(state => selectPostsByUser(state, userId));
     const isLoading = useSelector(selectUsersAreLoading);

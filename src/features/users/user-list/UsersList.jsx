@@ -1,23 +1,38 @@
-import {Link} from 'react-router-dom';
+import {Link, useSearchParams} from 'react-router-dom';
 import styles from './UsersList.module.css';
-import {useContext} from "react";
-import UserSearchContext from "../../../context/UserSearchContext";
+import {useEffect, useMemo, useState} from "react";
 import {useSelector} from "react-redux";
-import {selectUsersAreLoading, selectUserError, selectUsersHaveError} from "../usersSlice";
+import {selectUsersAreLoading, selectUserError, selectUsersHaveError, selectAllUsers} from "../usersSlice";
 
 const UsersList = () => {
-    const {searchUserResults} = useContext(UserSearchContext);
+    const [searchParams] = useSearchParams();
+    const userQuery = searchParams.get('user') || '';
+
+    const users = useSelector(selectAllUsers);
+    const [searchedUsers, setSearchedUsers] = useState([]);
+
+    useEffect(() => {
+        const filteredUsers = users.filter((user) =>
+            (user.name && user.name.toLowerCase().includes(userQuery.toLowerCase())));
+
+        setSearchedUsers(filteredUsers.reverse());
+    }, [users, userQuery]);
+
+
     const isLoading = useSelector(selectUsersAreLoading);
     const hasError = useSelector(selectUsersHaveError);
     const error = useSelector(selectUserError);
 
-    const renderedUsers =
-        searchUserResults.length ?
-            searchUserResults.map(user => (
+    const renderedUsers = useMemo(() => (
+        searchedUsers.length ?
+            searchedUsers.map(user => (
                 <li key={user.id}>
                     <Link to={`/user/${user.id}`}>{user.name}</Link>
-                </li>))
+                </li>
+            ))
             : <li className='status-msg'>No users to display.</li>
+    ), [searchedUsers]);
+
 
     let content;
     if (isLoading) {

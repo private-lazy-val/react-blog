@@ -1,22 +1,40 @@
 import styles from "../nav/Nav.module.css";
-import {useContext} from "react";
-import PostSearchContext from "../../context/PostSearchContext";
+import React, {useCallback, useState} from 'react';
+import PropTypes from "prop-types";
+import {useSearchParams} from "react-router-dom";
+import { BsSearchHeartFill } from 'react-icons/bs';
 
-const PostsFilter = () => {
-    const {searchPost, setSearchPost} = useContext(PostSearchContext);
+const PostsFilter = React.memo(() => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const postQuery = searchParams.get('post') || '';
+    const [search, setSearch] = useState(postQuery);
+
+    const handlePostSubmit = useCallback((e) => {
+        e.preventDefault();
+        const form = e.target;
+        const query = form.elements[`post-search`].value;
+
+        setSearchParams({post: query});
+    }, [setSearchParams]);
 
     return (
-        <form className={styles.search} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.search} onSubmit={handlePostSubmit}>
             <label htmlFor='post-search'>Search Posts</label>
             <input
                 id='post-search'
-                type='text'
+                name='post-search'
+                type='input'
                 placeholder='Search Posts'
-                value={searchPost}
-                onChange={(e) => setSearchPost(e.target.value)}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
             />
+            <button type='submit' className={styles[`submit-btn`]}><BsSearchHeartFill /></button>
         </form>
     );
+});
+
+PostsFilter.propTypes = {
+    postId: PropTypes.func,
 };
 
 export default PostsFilter;

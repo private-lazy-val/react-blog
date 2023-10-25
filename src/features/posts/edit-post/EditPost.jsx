@@ -45,7 +45,7 @@ const EditPost = ({openModal}) => {
     if (isLoading) {
         postContent = <p className='status-msg'>Loading post...</p>;
     } else if (!post) {
-        return <Navigate to="/not-found" replace />;
+        return <Navigate to="/not-found" replace/>;
     } else {
         postContent = (
             <>
