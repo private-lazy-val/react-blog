@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
 import styles from "./ConfirmDelete.module.css";
 import pekingeseImage from '../../../images/peki-face.png';
-import {useContext} from "react";
-import PostFormContext from "../../../context/PostFormContext";
 import {useSelector} from "react-redux";
 import {selectPostById} from "../../posts/postsSlice";
 import {useLocation} from "react-router-dom";
+import usePostForm from "../../../hooks/usePostForm";
 
 const ConfirmDelete = ({title}) => {
     const location = useLocation();
@@ -15,7 +14,7 @@ const ConfirmDelete = ({title}) => {
 
     const {
         handleDelete
-    } = useContext(PostFormContext);
+    } = usePostForm();
 
     return (
         <div className={styles.wrapper}>

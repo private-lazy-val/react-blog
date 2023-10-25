@@ -72,13 +72,13 @@
     border: 1px solid var(--dark-headline);
     padding: 12px;
     align-self: center;
-    border-radius: var(--br-general);;
-    background-color: var(--secondary);
+    border-radius: var(--br-general);
+    background-color: var(--accent);
 }
 
 .submit-btn:hover {
     color: var(--light-headline);
-    background-color: var(--accent);
+    background-color: var(--secondary);
 }
 
 /*Active nav section*/
