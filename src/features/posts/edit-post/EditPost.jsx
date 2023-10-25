@@ -1,15 +1,14 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {useParams, Navigate} from "react-router-dom";
 import {IoMdClose} from "react-icons/io";
 import {selectPostById, selectPostsAreLoading} from "../postsSlice";
 import {useSelector} from "react-redux";
 import styles from "./EditPost.module.css";
 import {handleSetImage} from "../../../utils/postForm";
-import PostFormContext from "../../../context/PostFormContext";
 import PropTypes from "prop-types";
+import usePostForm from "../../../hooks/usePostForm";
 
 const EditPost = ({openModal}) => {
-
     const {postId} = useParams();
     const post = useSelector((state) => selectPostById(state, Number(postId)));
     const isLoading = useSelector(selectPostsAreLoading);
@@ -27,7 +26,7 @@ const EditPost = ({openModal}) => {
         setUserName,
         setFileName,
         fileName
-    } = useContext(PostFormContext);
+    } = usePostForm();
 
     useEffect(() => {
         // Check if post exists

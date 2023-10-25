@@ -1,8 +1,8 @@
 import {IoMdClose} from "react-icons/io";
-import {useContext, useEffect} from "react";
+import {useEffect} from "react";
 import styles from './NewPost.module.css';
 import {handleSetImage} from "../../../utils/postForm";
-import PostFormContext from "../../../context/PostFormContext";
+import usePostForm from "../../../hooks/usePostForm";
 
 const NewPost = () => {
     const {
@@ -20,7 +20,7 @@ const NewPost = () => {
         setImage,
         setFileName,
         fileName
-    } = useContext(PostFormContext);
+    } = usePostForm();
 
     useEffect(() => {
         setTitle('');
