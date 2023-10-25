@@ -70,6 +70,7 @@ button {
     border: none;
     cursor: pointer;
     min-width: fit-content;
+    background-color: transparent;
     font-family: var(--ff-montserrat-ss);
     font-weight: var(--fw-500);
 }

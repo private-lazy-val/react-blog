@@ -1,11 +1,24 @@
 import Feed from '../feed/Feed';
-import {selectPostsAreLoading, selectPostsHaveError, selectPostError} from '../postsSlice';
+import {selectPostsAreLoading, selectPostsHaveError, selectPostError, selectAllPosts} from '../postsSlice';
 import {useSelector} from "react-redux";
-import {useContext, useEffect, useState} from "react";
-import PostSearchContext from "../../../context/PostSearchContext";
+import {useEffect, useMemo, useState} from "react";
+import {useSearchParams} from "react-router-dom";
 
 const Home = () => {
-    const {searchPostResults} = useContext(PostSearchContext);
+    const [searchParams] = useSearchParams();
+    const postQuery = searchParams.get('post') || '';
+
+    const posts = useSelector(selectAllPosts);
+    const [searchedPosts, setSearchedPosts] = useState([]);
+
+    useEffect(() => {
+        const filteredPosts = posts.filter((post) =>
+            (post.body && post.body.toLowerCase().includes(postQuery.toLowerCase()))
+            || (post.title && post.title.toLowerCase().includes(postQuery.toLowerCase())));
+
+        setSearchedPosts(filteredPosts.reverse());
+    }, [posts, postQuery]);
+
     const isLoading = useSelector(selectPostsAreLoading);
     const hasError = useSelector(selectPostsHaveError);
     const error = useSelector(selectPostError);
@@ -20,11 +33,12 @@ const Home = () => {
         }
     }, [isLoading, hasAttemptedFetch]);
 
-    const renderedPosts = (
-        searchPostResults.length ?
-            <Feed posts={searchPostResults}/> :
+    const renderedPosts = useMemo(() => (
+        searchedPosts.length ?
+            <Feed posts={searchedPosts}/> :
             <p className='status-msg'>No posts to display.</p>
-    );
+    ), [searchedPosts]);
+
 
     let content;
     if (isLoading) {

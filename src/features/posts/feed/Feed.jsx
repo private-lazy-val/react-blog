@@ -1,6 +1,7 @@
 import Post from '../post/Post';
 import PropTypes from "prop-types";
 import postPropTypes from '../../../utils/propTypes';
+
 const Feed = ({posts}) => {
     return (
         <>

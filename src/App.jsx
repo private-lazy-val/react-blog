@@ -13,8 +13,6 @@ import useScrollToTop from "./hooks/useScrollToTop";
 import useModal from "./hooks/useModal";
 import { selectIsModalOpen, selectModalType } from './features/modals/modalsSlice';
 import {Route, Routes} from 'react-router-dom';
-import {PostSearchProvider} from "./context/PostSearchContext";
-import {UserSearchProvider} from "./context/UserSearchContext";
 import {useRef} from "react";
 import {CSSTransition} from "react-transition-group";
 import transitions from "./features/modals/modal/ModalTransitions.module.css";
@@ -38,8 +36,6 @@ function App() {
 
     return (
         <>
-            <PostSearchProvider>
-                <UserSearchProvider>
                     <PostFormProvider>
                         <Routes>
                             <Route path='/' element={<Layout/>}>
@@ -62,15 +58,10 @@ function App() {
 
                                 <Route path='about' element={<About/>}/>
 
-                                {/*Catch all*/}
-                                {/*With 'replace' the current history entry is replaced by the new one, */}
-                                {/*so the back button will take you to the page before the last one*/}
                                 <Route path='*' element={<Missing/>}/>
                             </Route>
                         </Routes>
                     </PostFormProvider>
-                </UserSearchProvider>
-            </PostSearchProvider>
 
             <CSSTransition
                 in={isModalOpen && modalType === 'confirm-delete'}
