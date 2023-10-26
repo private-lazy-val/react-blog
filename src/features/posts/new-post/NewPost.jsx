@@ -33,7 +33,8 @@ const NewPost = () => {
     return (
         <main className='new-post'>
             <h2>New Post</h2>
-            <form className={styles[`new-post-form`]} onSubmit={(e) => handleSubmit(e, {
+            <form className={styles[`new-post-form`]}
+                  onSubmit={(e) => handleSubmit(e, {
                 title,
                 body: content,
                 user_name: userName,

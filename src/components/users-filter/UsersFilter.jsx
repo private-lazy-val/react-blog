@@ -18,7 +18,10 @@ const UsersFilter = React.memo(() => {
     }, [setSearchParams]);
 
     return (
-        <form className={styles.search} onSubmit={handleUserSubmit}>
+        <form
+            className={styles.search}
+            onSubmit={handleUserSubmit}
+            autoComplete="off">
             <label htmlFor='search'>Search User</label>
             <input
                 id='user-search'

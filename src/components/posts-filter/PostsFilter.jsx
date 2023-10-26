@@ -2,7 +2,7 @@ import styles from "../nav/Nav.module.css";
 import React, {useCallback, useState} from 'react';
 import PropTypes from "prop-types";
 import {useSearchParams} from "react-router-dom";
-import { BsSearchHeartFill } from 'react-icons/bs';
+import {BsSearchHeartFill} from 'react-icons/bs';
 
 const PostsFilter = React.memo(() => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +18,10 @@ const PostsFilter = React.memo(() => {
     }, [setSearchParams]);
 
     return (
-        <form className={styles.search} onSubmit={handlePostSubmit}>
+        <form
+            className={styles.search}
+            onSubmit={handlePostSubmit}
+            autoComplete="off">
             <label htmlFor='post-search'>Search Posts</label>
             <input
                 id='post-search'
@@ -28,7 +31,7 @@ const PostsFilter = React.memo(() => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button type='submit' className={styles[`submit-btn`]}><BsSearchHeartFill /></button>
+            <button type='submit' className={styles[`submit-btn`]}><BsSearchHeartFill/></button>
         </form>
     );
 });
